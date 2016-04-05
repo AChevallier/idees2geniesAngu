@@ -16,12 +16,11 @@
 
     <!-- 2. Configure SystemJS -->
     <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
+       System.config({
+        map: { 'rxjs': 'node_modules/rxjs' },
+        packages: {
+          app: { format: 'register', defaultExtension: 'js' },
+          'rxjs': {defaultExtension: 'js'}
         }
       });
       System.import('app/main')
