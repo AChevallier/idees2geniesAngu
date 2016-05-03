@@ -3,11 +3,7 @@ import {DemoService} from './demo.service';
 
 @Component({
     selector: 'my-app',
-    template: `<h1>1st API <br/></h1><h2>Foods</h2>
-        <h3>{{ time?.date }}<h3>
-			  <ul>
-			    <li *ngFor="#food of foods">{{food.name}}</li>
-			  </ul>`
+    templateUrl: 'template/my-app.html'
 })
 export class AppComponent {
  
