@@ -6,9 +6,6 @@ import 'rxjs/add/operator/map';
 import {AppComponent} from './app.component';
 import {AppSettings} from './app.settings';
 
-import {DemoService} from './demo.service';
-
 bootstrap(AppComponent, [
-  HTTP_PROVIDERS,
-  DemoService
+  HTTP_PROVIDERS
 ]);

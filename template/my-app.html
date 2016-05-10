@@ -1,5 +1,18 @@
 <h1>1st API <br/></h1><h2>Foods</h2>
-        <h3>{{ time?.date }}<h3>
-			  <ul>
-			    <li *ngFor="#food of foods">{{food.name}}</li>
-			  </ul>
+    <h3>{{ time?.date }}<h3>
+		  <ul>
+		    <li *ngFor="#food of foods">{{food.name}}</li>
+		  </ul>
+	<form role="form">
+      <div ng-control-group="credentials">
+        <label for="name">name</label>
+        <input
+          type="text"
+          #name
+          id="name"
+          ng-control="name"
+          required>
+      </div>
+      <button (click)="authenticate(name)">Login!</button>
+      <h3 *ngIf="receiveName">{{ receiveName.name }}</h3>
+    </form>

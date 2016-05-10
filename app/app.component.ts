@@ -1,5 +1,9 @@
 import {Component} from 'angular2/core';
-import {DemoService} from './demo.service';
+
+import {Injectable} from 'angular2/core';
+import {Http, Response, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Rx';
+import {AppSettings} from './app.settings';
 
 @Component({
     selector: 'my-app',
@@ -9,16 +13,24 @@ export class AppComponent {
  
   public foods;
   public time;
+  username: string;
+  password: string;
  
-  constructor(private _demoService: DemoService) { }
- 
- ngOnInit() {
+  public receiveName;
+  constructor(private http:Http) { 
+    
+  }
+
+  ngOnInit() { 
     this.getFoods();
-    this.getTime();
+    this.getTime(); 
+  }
+  logError(err) {
+    console.error('There was an error: ' + err);
   }
 
   getFoods() {
-    this._demoService.getFoods().subscribe(
+    this.http.get('/app/food.json').map((res: Response) => res.json()).subscribe(
       // the first argument is a function which runs on success
       data => { this.foods = data},
       // the second argument is a function which runs on error
@@ -29,7 +41,7 @@ export class AppComponent {
   }
 
   getTime() {
-    this._demoService.getTime().subscribe(
+    this.http.get(AppSettings.API_ENDPOINT + 'ping').map((res: Response) => res.json()).subscribe(
       // the first argument is a function which runs on success
     data => { this.time = data },
       // the second argument is a function which runs on error
@@ -37,5 +49,26 @@ export class AppComponent {
       // the third argument is a function which runs on completion
       () => console.log('done loading time')
     );
+  }
+
+  authenticate(name) {
+
+    let creds = JSON.stringify({ name: name.value });
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    //headers.append('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    this.http.post(AppSettings.API_ENDPOINT + 'user/post', creds, {
+      headers: headers
+      })
+      .subscribe(
+        data => {
+          this.receiveName = data;
+        },
+        err => this.logError(err.json().message),
+        () => console.log('Authentication Complete')
+      );
   }
 }
