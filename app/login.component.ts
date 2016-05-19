@@ -12,10 +12,11 @@ export class LoginComponent {
  
   public receiveName;
 
-  username: string;
+  login: string;
   password: string;
 
   randomQuote: string;
+  secretQuote: string;
 
   constructor(private http:Http) { 
     
@@ -34,9 +35,9 @@ export class LoginComponent {
     }
   }
 
-  authenticate(username, password) {
+  authenticate(login, password) {
 
-    let creds = JSON.stringify({ username: username.value, password: password.value });
+    let creds = JSON.stringify({ login: login.value, password: password.value });
 
     let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
@@ -48,7 +49,7 @@ export class LoginComponent {
       .subscribe(
           data => {
             this.saveJwt(JSON.parse(data).token);
-            username.value = null;
+            login.value = null;
             password.value = null;
           },
           err => this.logError(err.json().message),
