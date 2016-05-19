@@ -29,9 +29,9 @@ export class LoginComponent {
     console.error('There was an error: ' + err);
   }
 
-  saveJwt(jwt) {
-    if(jwt) {
-      localStorage.setItem('token', jwt)
+  saveToken(token) {
+    if(token) {
+      localStorage.setItem('token', token)
     }
   }
 
@@ -48,7 +48,7 @@ export class LoginComponent {
     }).map(res => res.json())
       .subscribe(
           data => {
-            this.saveJwt(JSON.parse(data).token);
+            this.saveToken(JSON.parse(data).token);
             login.value = null;
             password.value = null;
           },
@@ -58,23 +58,26 @@ export class LoginComponent {
   }
 
 
-  getSecretQuote() {
+  postToken() {
 
-    let jwt = localStorage.getItem('id_token');
-    let authHeader = new Headers();
-    if(jwt) {
-      authHeader.append('Authorization', 'Bearer ' + jwt);
-    }
+    let token = localStorage.getItem('token');
 
-    this.http.get('http://localhost:3001/api/protected/random-quote', {
-      headers: authHeader
-    })
+    let creds = JSON.stringify({ token : token});
+
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    this.http.post(AppSettings.API_ENDPOINT + 'user/token', creds, {
+      headers: headers
+    }).map(res => res.json())
         .subscribe(
-            data => this.secretQuote = data.text(),
-            err => this.logError(err.text()),
-            () => console.log('Secret Quote Complete')
+            data => {
+              this.saveToken(JSON.parse(data).token);
+            },
+            err => this.logError(err.json().message),
+            () => console.log('Authentication Complete')
         );
-
   }
 
 }
