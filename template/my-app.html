@@ -14,5 +14,5 @@
           required>
       </div>
       <button (click)="authenticate(name)">Login!</button>
-      <h3>{{ receiveName?.name }}</h3>
+      <h3 *ngIf="receiveName?.name">{{ receiveName?.name }}</h3>
     </form>
