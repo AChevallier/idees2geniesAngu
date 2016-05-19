@@ -1,8 +1,6 @@
 <h1>1st API <br/></h1><h2>Foods</h2>
-    <h3>{{ time?.date }}<h3>
-		  <ul>
-		    <li *ngFor="#food of foods">{{food.name}}</li>
-		  </ul>
+    <button (click)="logout()">Logout</button>
+    <h3>{{ time?.date }}</h3>
   <div ng-control-group="credentials">
     <label for="name">name</label>
     <input
@@ -12,5 +10,5 @@
       ng-control="name"
       required>
   </div>
-  <button (click)="authenticate(name)">Login!</button>
-  <h3 *ngIf="receiveName?.name">{{ receiveName?.name }}</h3>
+  <button (click)="postName(name)">Login!</button>
+  <h3 *ngIf="receiveName?.name"> {{ receiveName?.name }} </h3>
