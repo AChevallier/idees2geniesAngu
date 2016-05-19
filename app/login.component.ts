@@ -1,7 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component, Injector, DynamicComponentLoader} from 'angular2/core';
 
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
+import {AppComponent} from './app.component';
 
 @Component({
     selector: 'login',
@@ -15,14 +16,21 @@ export class LoginComponent {
   login: string;
   password: string;
 
+  tokenValidate: boolean;
+
   randomQuote: string;
   secretQuote: string;
 
-  constructor(private http:Http) { 
-    
+  public dcl;
+  public injector;
+
+  constructor(dcl: DynamicComponentLoader, injector: Injector, private http:Http) {
+    this.dcl = dcl;
+    this.injector = injector;
   }
 
   ngOnInit() {
+    this.postToken()
   }
 
   logError(err) {
@@ -68,12 +76,16 @@ export class LoginComponent {
     //headers.append('Content-Type', 'application/json');
     headers.append('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
 
-    this.http.post(AppSettings.API_ENDPOINT + 'user/token', creds, {
+    this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
       headers: headers
     }).map(res => res.json())
         .subscribe(
             data => {
-              this.saveToken(JSON.parse(data).token);
+              this.tokenValidate = (JSON.parse(data).valide);
+
+              if(this.tokenValidate === true){
+                  this.dcl.loadAsRoot(AppComponent, 'my-app', this.injector);
+              }
             },
             err => this.logError(err.json().message),
             () => console.log('Authentication Complete')
