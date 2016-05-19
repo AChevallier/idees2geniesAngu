@@ -4,6 +4,9 @@ import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {AppComponent} from './app.component';
 
+//call md5.js
+declare var md5: any;
+
 @Component({
     selector: 'login',
     templateUrl: 'template/login.html'
@@ -18,8 +21,6 @@ export class LoginComponent {
 
   tokenValidate: boolean;
 
-  randomQuote: string;
-  secretQuote: string;
 
   public dcl;
   public injector;
@@ -40,12 +41,13 @@ export class LoginComponent {
   saveToken(token) {
     if(token) {
       localStorage.setItem('token', token)
+      this.tokenValidate = true;
     }
   }
 
   authenticate(login, password) {
 
-    let creds = JSON.stringify({ login: login.value, password: password.value });
+    let creds = JSON.stringify({ login: login.value, password: md5(password.value) });
 
     let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
@@ -59,6 +61,10 @@ export class LoginComponent {
             this.saveToken(JSON.parse(data).token);
             login.value = null;
             password.value = null;
+
+            if(this.tokenValidate === true){
+              this.dcl.loadAsRoot(AppComponent, 'my-app', this.injector);
+            }
           },
           err => this.logError(err.json().message),
           () => console.log('Authentication Complete')
@@ -88,7 +94,7 @@ export class LoginComponent {
               }
             },
             err => this.logError(err.json().message),
-            () => console.log('Authentication Complete')
+            () => console.log('Checking token done')
         );
   }
 
