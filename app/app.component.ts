@@ -41,13 +41,13 @@ export class AppComponent {
   }
 
   getTime() {
-    this.http.get(AppSettings.API_ENDPOINT + 'ping').map((res: Response) => res.json()).subscribe(
+    this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
       // the first argument is a function which runs on success
-    data => { this.time = data },
+    data => { this.time = JSON.parse(data) },
       // the second argument is a function which runs on error
       err => console.error(err),
       // the third argument is a function which runs on completion
-      () => console.log('done loading time')
+      () => console.log('done loading time' + JSON.stringify(this.time))
     );
   }
 
@@ -56,16 +56,17 @@ export class AppComponent {
     let creds = JSON.stringify({ name: name.value });
 
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    
-    //headers.append('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
+    //headers.append('Content-Type', 'application/json');
 
-    this.http.post(AppSettings.API_ENDPOINT + 'user/post', creds, {
+    headers.append('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    this.http.post(AppSettings.API_ENDPOINT + 'ping/post', creds, {
       headers: headers
       })
+        .map(res => res.json())
       .subscribe(
         data => {
-          this.receiveName = data;
+          this.receiveName = JSON.parse(data);
         },
         err => this.logError(err.json().message),
         () => console.log('Authentication Complete')
