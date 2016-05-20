@@ -1,12 +1,11 @@
 <html>
   <head>
-    <title>Idées de génies</title>
+    <title>Idées2génies - Partagez vos idées</title>
+      
+    <link href="./static/css/style.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="static/css/style.css" rel="stylesheet" type="text/css" />
 
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
-  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
     <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
     <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
@@ -15,9 +14,8 @@
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
 
-    <!-- static -->
     <script src="static/js/md5.js"></script>
-    <!-- 2. Configure SystemJS -->
+
     <script>
        System.config({
         map: { 'rxjs': 'node_modules/rxjs' },
@@ -31,12 +29,14 @@
     </script>
   </head>
 
-  <!-- 3. Display the application -->
   <body>
+
     <div id="bloc_page">
       <div id="header"></div>
-      <login>Please, wait...</login>
-      <my-app></my-app>
+      <div id="bloc_corps">
+        <login></login>
+        <my-app></my-app>
+      </div>
     </div>
   </body>
 </html>
