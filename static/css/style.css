@@ -9,7 +9,7 @@ body{
     height:100%;
     padding:0;
     margin:0;
-    font-size:13px;
+    font-size:14px;
     position:relative;
     background-image: url("../images/background.png");
 }
@@ -29,6 +29,14 @@ body{
     width:1000px;
     height: 300px;
     background-image: url("../images/header.png");
+}
+
+#footer{
+    width: 1000px;
+    color: #FFFFFF;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
 }
 
 #bloc_corps{
