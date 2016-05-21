@@ -1,7 +1,7 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Injector, DynamicComponentLoader} from 'angular2/core';
 import {LoginComponent} from './login.component';
 import {InformationComponent} from './information.component';
-import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, Router, AuxRoute} from 'angular2/router';
 import {Headers, Http} from "angular2/http";
 import {AppSettings} from "./app.settings";
 
@@ -17,7 +17,8 @@ import {AppSettings} from "./app.settings";
 export class AppComponent implements OnInit{
 
     tokenValidate:boolean;
-    constructor(private router: Router, private http: Http) {}
+    constructor(private router: Router, private http: Http) {
+    }
 
     ngOnInit() {
         this.postToken()
