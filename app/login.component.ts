@@ -1,42 +1,26 @@
-import {Component, Injector, DynamicComponentLoader, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 
-import {Http, Response, Headers} from 'angular2/http';
+import {Http, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
-import {AppComponent} from './app.component';
+import {Router} from 'angular2/router';
 
 //call md5.js
 declare var md5:any;
 
 @Component({
-    selector: 'login',
     templateUrl: 'template/login.html'
 })
-export class LoginComponent implements OnInit, OnDestroy {
-
-
+export class LoginComponent implements OnInit {
     public receiveName;
 
     login:string;
-    password:string;
-
     tokenValidate:boolean;
 
 
-    public dcl;
-    public injector;
-
-
-    constructor(dcl:DynamicComponentLoader, injector:Injector, private http:Http) {
-        this.dcl = dcl;
-        this.injector = injector;
-    }
-
-    ngOnDestroy() {
-        console.log('ngOnDestroy');
+    constructor(private router: Router, private http:Http) {
     }
 
     ngOnInit() {
-        this.postToken()
     }
 
     logError(err) {
@@ -68,38 +52,11 @@ export class LoginComponent implements OnInit, OnDestroy {
                     password.value = null;
 
                     if (this.tokenValidate === true) {
-                        this.dcl.loadAsRoot(AppComponent, 'my-app', this.injector);
+                        this.router.navigate(['Information']);
                     }
                 },
                 err => this.logError(err.json().message),
                 () => console.log('Authentication Complete')
-            );
-    }
-
-
-    postToken() {
-
-        let token = localStorage.getItem('token');
-
-        let creds = JSON.stringify({token: token});
-
-        let headers = new Headers();
-        //headers.append('Content-Type', 'application/json');
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
-            headers: headers
-        }).map(res => res.json())
-            .subscribe(
-                data => {
-                    this.tokenValidate = (JSON.parse(data).valide);
-
-                    if (this.tokenValidate === true) {
-                        this.dcl.loadAsRoot(AppComponent, 'my-app', this.injector);
-                    }
-                },
-                err => this.logError(err.json().message),
-                () => console.log('Checking token done')
             );
     }
 

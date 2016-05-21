@@ -3,9 +3,14 @@ import {bootstrap} from 'angular2/platform/browser';
 import 'rxjs/Rx';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import 'rxjs/add/operator/map';
-//import {AppComponent} from './app.component';
-import {LoginComponent} from './login.component';
+import {ROUTER_PROVIDERS,APP_BASE_HREF,LocationStrategy,RouteParams,ROUTER_BINDINGS, HashLocationStrategy} from 'angular2/router';
+import {bind, provide} from 'angular2/core';
+import {AppComponent} from "./app.component";
 
-bootstrap(LoginComponent, [
-  HTTP_PROVIDERS
+
+bootstrap(AppComponent, [
+    HTTP_PROVIDERS,
+    ROUTER_PROVIDERS,
+    provide(LocationStrategy, {useClass:HashLocationStrategy})
+    //bind(APP_BASE_HREF).toValue(location.pathname)
 ]);
