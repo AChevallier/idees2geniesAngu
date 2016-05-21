@@ -1,74 +1,54 @@
-import {Component, OnDestroy, OnInit, Injector, DynamicComponentLoader} from 'angular2/core';
-import {Http, Response, Headers} from 'angular2/http';
-import {AppSettings} from './app.settings';
+import {Component, OnInit} from 'angular2/core';
+import {LoginComponent} from './login.component';
+import {InformationComponent} from './information.component';
+import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {Headers, Http} from "angular2/http";
+import {AppSettings} from "./app.settings";
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'template/my-app.html'
+    templateUrl: 'template/my-app.html',
+    directives: [ROUTER_DIRECTIVES]
 })
-export class AppComponent{
+@RouteConfig([
+    {path: '/login',name : 'Login' , component: LoginComponent},
+    {path: '/information', name : 'Information', component: InformationComponent}
+])
+export class AppComponent implements OnInit{
 
-    public time;
-    username:string;
-    password:string;
-
-    public receiveName;
-
-    public dcl;
-    public injector;
-
-    constructor(dcl:DynamicComponentLoader, injector:Injector,private http:Http) {
-        this.dcl = dcl;
-        this.injector = injector;
-    }
+    tokenValidate:boolean;
+    constructor(private router: Router, private http: Http) {}
 
     ngOnInit() {
-        this.getTime();
+        this.postToken()
     }
 
-    logError(err) {
-        console.error('There was an error: ' + err);
-    }
+    postToken() {
+        let token = localStorage.getItem('token');
 
-    getTime() {
-        this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
-            // the first argument is a function which runs on success
-            data => {
-                this.time = JSON.parse(data)
-            },
-            // the second argument is a function which runs on error
-            err => console.error(err),
-            // the third argument is a function which runs on completion
-            () => console.log('done loading time' + JSON.stringify(this.time))
-        );
-    }
-
-    postName(name) {
-
-        let creds = JSON.stringify({name: name.value});
+        let creds = JSON.stringify({token: token});
 
         let headers = new Headers();
         //headers.append('Content-Type', 'application/json');
-
         headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-        this.http.post(AppSettings.API_ENDPOINT + 'ping/post', creds, {
+        this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
             headers: headers
-        })
-            .map(res => res.json())
+        }).map(res => res.json())
             .subscribe(
                 data => {
-                    this.receiveName = JSON.parse(data);
+                    this.tokenValidate = (JSON.parse(data).valide);
+
+                    if (this.tokenValidate === true) {
+                        this.router.navigate(['Information']);
+                    }
+                    else{
+                        this.router.navigate(['Login']);
+                    }
                 },
-                err => this.logError(err.json().message),
-                () => console.log('sent name')
+                err => console.error('There was an error: ' + err.json().message),
+                () => console.log('Checking token done')
             );
     }
 
-
-    logout() {
-        localStorage.removeItem('token');
-        //reload page NOT GOOD to change with the time
-        location.reload();
-    }
 }

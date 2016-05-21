@@ -1,0 +1,14 @@
+<h1>1st API <br/></h1><h2>Foods</h2>
+<button (click)="logout()">Logout</button>
+<h3>{{ time?.date }}</h3>
+<div ng-control-group="credentials">
+    <label for="name">name</label>
+    <input
+            type="text"
+            #name
+            id="name"
+            ng-control="name"
+            required>
+</div>
+<button (click)="postName(name)">Login!</button>
+<h3 *ngIf="receiveName?.name"> {{ receiveName?.name }} </h3>
