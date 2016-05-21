@@ -1,12 +1,13 @@
 /**
  * Created by alexandre on 21/05/16.
  */
-import {Component, OnDestroy, OnInit, Injector, DynamicComponentLoader} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
 
 @Component({
+    selector:'information',
     templateUrl: 'template/information.html'
 })
 export class InformationComponent{
@@ -60,7 +61,6 @@ export class InformationComponent{
                 () => console.log('sent name')
             );
     }
-
 
     logout() {
         localStorage.removeItem('token');
