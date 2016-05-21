@@ -8,10 +8,14 @@
 <!-------------------------------------------------->
 <!-------------------------------------------------->
 
-<div style="text-align: center">
-    <form>
-        <div><input type="email" #login id="login" ng-control="login" required placeholder="Adresse email" class="input_email"></div>
-        <div><input type="password" #password id="password" ng-control="password" required placeholder="Mot de passe"></div>
-        <div><button (click)="authenticate(login, password)">Connexion</button></div>
-    </form>
+<div id="bloc_corps">
+
+    <div style="text-align: center">
+        <form>
+            <div><input type="email" #login id="login" ng-control="login" required placeholder="Adresse email" class="input_email"></div>
+            <div><input type="password" #password id="password" ng-control="password" required placeholder="Mot de passe"></div>
+            <div><button (click)="authenticate(login, password)">Connexion</button></div>
+        </form>
+    </div>
+
 </div>
