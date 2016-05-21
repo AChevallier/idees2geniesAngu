@@ -2,33 +2,7 @@
 <!-------------------------------------------------->
 
 <style type="text/css">
-    input[type="email"], input[type="password"]{
-        width:260px;
-        height:35px;
-        margin-bottom: 15px;
-        padding: 5px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size:13px;
-    }
 
-    input[type="text"]:hover, input[type="password"]:hover{
-        cursor: pointer;
-    }
-
-    button{
-        height:30px;
-        padding: 5px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size:13px;
-    }
-
-    button:hover{
-        cursor: pointer;
-    }
 </style>
 
 <!-------------------------------------------------->
@@ -36,7 +10,7 @@
 
 <div style="text-align: center">
     <form>
-        <div><input type="email" #login id="login" ng-control="login" required placeholder="Adresse email"></div>
+        <div><input type="email" #login id="login" ng-control="login" required placeholder="Adresse email" class="input_email"></div>
         <div><input type="password" #password id="password" ng-control="password" required placeholder="Mot de passe"></div>
         <div><button (click)="authenticate(login, password)">Connexion</button></div>
     </form>
