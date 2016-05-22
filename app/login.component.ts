@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.postToken();
     }
 
     logError(err) {
@@ -58,6 +59,31 @@ export class LoginComponent implements OnInit {
                 },
                 err => this.logError(err.json().message),
                 () => console.log('Authentication Complete')
+            );
+    }
+
+    postToken() {
+        let token = localStorage.getItem('token');
+
+        let creds = JSON.stringify({token: token});
+
+        let headers = new Headers();
+        //headers.append('Content-Type', 'application/json');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
+            headers: headers
+        }).map(res => res.json())
+            .subscribe(
+                data => {
+                    this.tokenValidate = (JSON.parse(data).valide);
+
+                    if (this.tokenValidate === true) {
+                        this.router.navigate(['Information']);
+                    }
+                },
+                err => console.error('There was an error: ' + err.json().message),
+                () => console.log('Checking token done')
             );
     }
 
