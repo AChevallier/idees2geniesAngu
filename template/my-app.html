@@ -1,10 +1,10 @@
 <div *ngIf="!router.isRouteActive(router.generate(['Login']))" class="menu">
     <div class="menu-item">Accueil</div>
     <a href=""><div class="menu-item">Liste des idées</div></a>
-    <div class="menu-user"><b>{{ name }}</b> | <a (click)="logout()">Se déconnecter</a></div>
+    <div class="menu-user"><b>{{ name }}</b> | <a (click)="logout()" class="souris_dessus_pointer souris_dessus_souligne">Se déconnecter</a></div>
 </div>
 <div id="bloc_corps">
     <information></information>
-</div>
 
 <router-outlet></router-outlet>
+</div>

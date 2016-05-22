@@ -15,6 +15,11 @@ body{
     color: #3a4459;
 }
 
+a{
+    text-decoration: none;
+    color: #3a4459;
+}
+
 #bloc_page{
     width:1000px;
     margin:auto;
