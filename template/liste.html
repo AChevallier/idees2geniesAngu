@@ -8,13 +8,15 @@
       margin: 30px auto;
    }
 
-   .idea:hover{
-      cursor: pointer;
-   }
-
    .idea-title{
       font-size: 16px;
       font-weight: 600;
+   }
+
+   .idea-date-author{
+       color: #989898;
+       font-size: 12px;
+       line-height: 16px;
    }
 
    .idea-description{
@@ -34,28 +36,44 @@
 <div class="titre">Liste des idées</div>
 
 <div class="idea">
-      <div class="idea-title">Une voiture qui vole</div>
-      <div class="tiret"></div>
-      <div class="idea-description">
-         Alii summum decus in carruchis solito altioribus et ambitioso vestium cultu ponentes sudant sub ponderibus lacernarum, quas in collis insertas cingulis ipsis adnectunt nimia subtegminum tenuitate perflabiles, expandentes eas crebris agitationibus maximeque sinistra, ut longiores fimbriae tunicaeque perspicue luceant varietate liciorum effigiatae in species animalium multiformes.
-      </div>
-      <div class="tiret"></div>
-      <div>
-         <span class="souris_dessus_souligne"><img src="../static/images/like.png" width="15">
+    <div class="idea-title">Une voiture qui vole</div>
+    <div class="idea-date-author">par Steve Vandycke, le 22/05/2016 à 19h59</div>
+    <div class="tiret"></div>
+    <div class="idea-description">
+        Alii summum decus in carruchis solito altioribus et ambitioso vestium cultu ponentes sudant sub ponderibus lacernarum, quas in collis insertas cingulis ipsis adnectunt nimia subtegminum tenuitate perflabiles, expandentes eas crebris agitationibus maximeque sinistra, ut longiores fimbriae tunicaeque perspicue luceant varietate liciorum effigiatae in species animalium multiformes.
+    </div>
+    <div class="tiret"></div>
+    <div>
+        <div style="float: left">
+                    <span class="souris_dessus_souligne souris_dessus_pointer"><img src="../static/images/like.png" width="15">
          Je vote</span>
-      </div>
+
+        </div>
+        <div style="float: right">
+            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px">0</span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
 </div>
 
 <div class="idea">
    <div class="idea-title">Une voiture qui vole</div>
+    <div class="idea-date-author">par Steve Vandycke, le 22/05/2016 à 19h59</div>
    <div class="tiret"></div>
    <div class="idea-description">
       Alii summum decus in carruchis solito altioribus et ambitioso vestium cultu ponentes sudant sub ponderibus lacernarum, quas in collis insertas cingulis ipsis adnectunt nimia subtegminum tenuitate perflabiles, expandentes eas crebris agitationibus maximeque sinistra, ut longiores fimbriae tunicaeque perspicue luceant varietate liciorum effigiatae in species animalium multiformes.
    </div>
    <div class="tiret"></div>
    <div>
-         <span class="souris_dessus_souligne"><img src="../static/images/like.png" width="15">
-         Je vote</span>
+       <div style="float: left">
+                    <span class="souris_dessus_souligne souris_dessus_pointer"><img src="../static/images/like.png" width="15">
+         Je ne vote plus</span>
+
+       </div>
+       <div style="float: right">
+            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px">2</span>
+       </div>
+       <div style="clear: both"></div>
    </div>
 </div>
 
