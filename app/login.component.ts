@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     public receiveName;
 
     login:string;
-    tokenValidate:boolean;
+    tokenValidate = false;
 
 
     constructor(private router: Router, private http:Http) {

@@ -4,6 +4,7 @@ import {InformationComponent} from './information.component';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, AuxRoute} from 'angular2/router';
 import {Headers, Http} from "angular2/http";
 import {AppSettings} from "./app.settings";
+import {ListeIdeesComponent} from "./liste_idees.component";
 
 @Component({
     selector: 'my-app',
@@ -12,7 +13,8 @@ import {AppSettings} from "./app.settings";
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
-    {path: '/information', name : 'Information', component: InformationComponent}
+    {path: '/information', name : 'Information', component: InformationComponent},
+    {path: '/liste',name : 'Liste' , component: ListeIdeesComponent},
 ])
 export class AppComponent implements OnInit{
 
@@ -50,6 +52,11 @@ export class AppComponent implements OnInit{
                 err => console.error('There was an error: ' + err.json().message),
                 () => console.log('Checking token done')
             );
+    }
+
+    logout() {
+        localStorage.removeItem('token');
+        this.router.navigate(['Login']);
     }
 
 }
