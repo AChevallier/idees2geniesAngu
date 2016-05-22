@@ -13,7 +13,7 @@ import {ListeIdeesComponent} from "./liste_idees.component";
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
-    {path: '/information', name : 'Information', component: InformationComponent},
+    {path: '/accueil', name : 'Information', component: InformationComponent},
     {path: '/liste',name : 'Liste' , component: ListeIdeesComponent},
 ])
 export class AppComponent implements OnInit{
