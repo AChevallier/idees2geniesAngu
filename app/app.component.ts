@@ -19,10 +19,13 @@ import {ListeIdeesComponent} from "./liste_idees.component";
 export class AppComponent implements OnInit{
 
     tokenValidate:boolean;
+
+    public name;
     constructor(private router: Router, private http: Http) {
     }
 
     ngOnInit() {
+        this.name = localStorage.getItem('last_name') + " " + localStorage.getItem('first_name');
         this.postToken()
     }
 

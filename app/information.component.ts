@@ -7,6 +7,7 @@ import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
 
 @Component({
+    selector:'information',
     templateUrl: 'template/information.html'
 })
 export class InformationComponent{
@@ -15,13 +16,12 @@ export class InformationComponent{
 
     public receiveName;
 
-    public name;
 
     constructor(private router: Router,private http:Http) {
     }
 
     ngOnInit() {
-        this.name = localStorage.getItem('last_name') + " " + localStorage.getItem('first_name');
+
         this.getTime();
     }
 

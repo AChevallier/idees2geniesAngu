@@ -55,6 +55,11 @@ body{
     border-right:  0.5px solid #FFFFFF;
 }
 
+.menu-item:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .menu-user{
     height: 35px;
     line-height: 40px;
@@ -62,10 +67,6 @@ body{
     width: auto;
     float: right;
     padding-right: 5px;
-}
-
-.menu-item:hover{
-    cursor: pointer;
 }
 
 #bloc_corps{
@@ -108,3 +109,13 @@ button:hover{
     font-weight: 500;
     margin-bottom: 20px;
 }
+
+.souris_dessus_pointer:hover{
+    cursor: pointer;
+}
+
+.souris_dessus_souligne:hover{
+    text-decoration: underline;
+}
+
+

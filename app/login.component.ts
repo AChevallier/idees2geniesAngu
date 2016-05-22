@@ -8,6 +8,7 @@ import {Router} from 'angular2/router';
 declare var md5:any;
 
 @Component({
+    selector:'information',
     templateUrl: 'template/login.html'
 })
 export class LoginComponent implements OnInit {
