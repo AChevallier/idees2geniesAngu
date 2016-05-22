@@ -49,7 +49,10 @@ export class LoginComponent implements OnInit {
         }).map(res => res.json())
             .subscribe(
                 data => {
-                    this.saveToken(JSON.parse(data).token);
+                    let dataParsed = JSON.parse(data);
+                    this.saveToken(dataParsed.token);
+                    localStorage.setItem('last_name', dataParsed.name);
+                    localStorage.setItem('first_name', dataParsed.firstName);
                     login.value = null;
                     password.value = null;
 

@@ -1,7 +1,7 @@
-import {Component, OnInit, Injector, DynamicComponentLoader} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {LoginComponent} from './login.component';
 import {InformationComponent} from './information.component';
-import {ROUTER_DIRECTIVES, RouteConfig, Router, AuxRoute} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {Headers, Http} from "angular2/http";
 import {AppSettings} from "./app.settings";
 import {ListeIdeesComponent} from "./liste_idees.component";
@@ -25,8 +25,8 @@ export class AppComponent implements OnInit{
     }
 
     ngOnInit() {
-        this.name = localStorage.getItem('last_name') + " " + localStorage.getItem('first_name');
         this.postToken()
+        this.name = localStorage.getItem('last_name') + " " + localStorage.getItem('first_name');
     }
 
     postToken() {
