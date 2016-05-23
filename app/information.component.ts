@@ -56,7 +56,7 @@ export class InformationComponent{
         this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
             // the first argument is a function which runs on success
             data => {
-                this.time = JSON.parse(data)
+                //this.time = JSON.parse(data)
             },
             // the second argument is a function which runs on error
             err => console.error(err),
