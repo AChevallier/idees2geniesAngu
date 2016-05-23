@@ -61,7 +61,7 @@ export class InformationComponent{
             // the second argument is a function which runs on error
             err => console.error(err),
             // the third argument is a function which runs on completion
-            () => console.log('done loading time' + JSON.stringify(this.time))
+            () => console.log('done loading time')
         );
     }
 }
