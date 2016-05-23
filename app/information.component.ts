@@ -13,6 +13,7 @@ import {Router} from 'angular2/router';
 export class InformationComponent{
 
     public receiveName;
+    public top5ideas;
 
 
     constructor(private router: Router,private http:Http) {
@@ -21,6 +22,7 @@ export class InformationComponent{
     ngOnInit() {
 
         this.getTime();
+        this.getTop5Ideas();
     }
 
     logError(err) {
@@ -50,7 +52,29 @@ export class InformationComponent{
                 err => this.logError(err.json().message),
                 () => console.log('sent idea')
             );
-        }
+    }
+
+    getTop5Ideas(){
+        let creds = '';
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'idea/top5', creds, {
+                headers: headers
+            })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(data)
+                    this.top5ideas = JSON.parse(data);
+                },
+                err => this.logError(err.json().message),
+                () => console.log('sent idea')
+            );
+    }
 
     getTime(){
         this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
