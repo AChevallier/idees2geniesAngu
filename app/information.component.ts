@@ -12,8 +12,6 @@ import {Router} from 'angular2/router';
 })
 export class InformationComponent{
 
-    public time;
-
     public receiveName;
 
 
@@ -29,7 +27,32 @@ export class InformationComponent{
         console.error('There was an error: ' + err);
     }
 
-    getTime() {
+    postIdea(title, idea){
+
+        let creds = JSON.stringify({title: title.value, idea:idea.value });
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        //headers.append('Content-Type', 'application/json');
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'idea/add', creds, {
+            headers: headers
+        })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(data)
+                    //this.receiveName = JSON.parse(data);
+                },
+                err => this.logError(err.json().message),
+                () => console.log('sent idea')
+            );
+        }
+
+    getTime(){
         this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
             // the first argument is a function which runs on success
             data => {
@@ -40,27 +63,5 @@ export class InformationComponent{
             // the third argument is a function which runs on completion
             () => console.log('done loading time' + JSON.stringify(this.time))
         );
-    }
-
-    postName(name) {
-
-        let creds = JSON.stringify({name: name.value});
-
-        let headers = new Headers();
-        //headers.append('Content-Type', 'application/json');
-
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'ping/post', creds, {
-            headers: headers
-        })
-            .map(res => res.json())
-            .subscribe(
-                data => {
-                    this.receiveName = JSON.parse(data);
-                },
-                err => this.logError(err.json().message),
-                () => console.log('sent name')
-            );
     }
 }

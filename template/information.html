@@ -66,8 +66,8 @@
                     <div class="titre_form">Titre :</div>
                     <div><input type="text" #title id="title" ng-control="title" required></div>
                     <div class="titre_form">Votre idée :</div>
-                    <div><textarea id="idea" name="idea"></textarea> </div>
-                    <div style="text-align: center"><button>Ajouter mon idée</button></div>
+                    <div><textarea id="idea" #idea name="idea"></textarea> </div>
+                    <div style="text-align: center"><button (click)="postIdea(title, idea)" >Ajouter mon idée</button></div>
                 </form>
             </div>
         </div>

@@ -34,7 +34,6 @@ export class ListeIdeesComponent{
         }).map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.dataParsed = JSON.parse(data);
                 },
                 err => err.json().message,
