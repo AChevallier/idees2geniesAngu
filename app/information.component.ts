@@ -14,6 +14,7 @@ export class InformationComponent{
 
     public receiveName;
     public top5ideas;
+    public myCommunities;
 
 
     constructor(private router: Router,private http:Http) {
@@ -22,6 +23,7 @@ export class InformationComponent{
     ngOnInit() {
 
         this.getTime();
+        this.getMyCommunities();
         this.getTop5Ideas();
     }
 
@@ -29,9 +31,33 @@ export class InformationComponent{
         console.error('There was an error: ' + err);
     }
 
-    postIdea(title, idea){
+    getMyCommunities(){
+        let creds = '';
 
-        let creds = JSON.stringify({title: title.value, idea:idea.value });
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        //headers.append('Content-Type', 'application/json');
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'community/myCommunities', creds, {
+                headers: headers
+            })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(data)
+                    this.myCommunities = JSON.parse(data);
+                },
+                err => this.logError(err.json().message),
+                () => console.log('sent idea')
+            );
+    }
+
+    postIdea(title, community, idea){
+
+        let creds = JSON.stringify({title: title.value, idCommunity:community.value ,idea:idea.value });
 
         let headers = new Headers();
         headers.append('token', localStorage.getItem('token'));

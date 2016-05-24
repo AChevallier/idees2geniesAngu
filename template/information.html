@@ -76,20 +76,16 @@
             <div class="titre" style="text-align: left">Ajouter une idée</div>
             <div>
                 <form>
-                    <div class="titre_form">Titre :</div>
+                    <div class="titre_form">Titre* :</div>
                     <div><input type="text" #title id="title" ng-control="title" required></div>
                     <div class="titre_form">Communauté :</div>
-
-                    <div>
-                        <select name="community">
-                            <option value="" selected></option>
-                            <option value="1">LP PRISM</option>
-                        </select>
-                    </div>
-
-                    <div class="titre_form">Votre idée :</div>
+                    <select #community>
+                        <option value="" selected></option>
+                        <option *ngFor="#community of myCommunities" value="{{community.idCommunity}}">{{community.nameCommunity}}</option>
+                    </select>
+                    <div class="titre_form">Votre idée* :</div>
                     <div><textarea id="idea" #idea name="idea"></textarea> </div>
-                    <div style="text-align: center"><button (click)="postIdea(title, idea)" >Ajouter mon idée</button></div>
+                    <div style="text-align: center"><button (click)="postIdea(title, community, idea)" >Ajouter mon idée</button></div>
                 </form>
             </div>
         </div>
