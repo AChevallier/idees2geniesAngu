@@ -54,20 +54,30 @@
         font-weight: 500;
         border-right: 4px solid #FFFFFF;
         background-color: #3a4459;
-        height: 30px;
-        line-height: 30px;
+        height: 35px;
+        line-height: 35px;
         padding: 5px;
         color: #e9e9e9;
         width: 20px;
         text-align: center;
     }
-    .idea-title{
+
+    .idea-idea{
         float: left;
         padding: 5px;
         background-color: #e9e9e9;
-        height: 30px;
-        line-height: 30px;
+        height: 35px;
         width: 397px;
+    }
+
+    .idea-title{
+        line-height: 20px;
+    }
+
+    .idea-details{
+        line-height: 15px;
+        color: #989898;
+        font-size: 11px;
     }
 </style>
 
@@ -93,11 +103,13 @@
         <div style="float: right; width: 47%">
             <div class="titre" style="text-align: left">Top 5 des idées</div>
 
+
             <div *ngFor="#idea of top5ideas; #i = index">
                 <div class="idea" id="{{idea.idIdea}}">
                     <div class="idea-number">{{i+1}}</div>
-                    <div class="idea-title">
-                        {{ idea?.title }}
+                    <div class="idea-idea">
+                        <div class="idea-title">{{ idea?.title }}</div>
+                        <div class="idea-details" >Publié par {{ idea?.firstNameAutor }} {{ idea?.nameAutor }}</div>
                     </div>
                 </div>
             </div>
@@ -107,21 +119,3 @@
     </div>
 
 
-
-
-    <!--
-    <h1>1st API <br/></h1><h2>Foods</h2>
-    <button (click)="logout()">Logout</button>
-    <h3>{{ time?.date }}</h3>
-    <div ng-control-group="credentials">
-        <label for="name">name</label>
-        <input
-                type="text"
-                #name
-                id="name"
-                ng-control="name"
-                required>
-    </div>
-    <button (click)="postName(name)">Login!</button>
-    <h3 *ngIf="receiveName?.name"> {{ receiveName?.name }} </h3>
-    -->

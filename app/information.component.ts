@@ -5,11 +5,14 @@ import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
+import {DatePipe} from "angular2/common";
 
 @Component({
     selector:'information',
     templateUrl: 'template/information.html'
 })
+
+
 export class InformationComponent{
 
     public receiveName;

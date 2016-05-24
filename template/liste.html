@@ -15,7 +15,7 @@
 
    .idea-date-author{
        color: #989898;
-       font-size: 12px;
+       font-size: 11px;
        line-height: 16px;
    }
 
@@ -47,12 +47,12 @@
         <div style="float: left">
             <span class="souris_dessus_souligne souris_dessus_pointer">
                 <span *ngIf="!idea?.voteUser" (click)="vote(idea?.id)" style="color: #989898"><img src="../static/images/like.png" width="15"> Je vote</span>
-                <span *ngIf="idea?.voteUser" (click)="vote(idea?.id)" style="color: #7b90bb; font-weight: 600"><img src="../static/images/like-true.png" width="15"> Je vote</span>
+                <span *ngIf="idea?.voteUser" (click)="vote(idea?.id)" style="color: #7b90bb; font-weight: 500"><img src="../static/images/like-true.png" width="15"> Je vote</span>
              </span>
 
         </div>
         <div style="float: right">
-            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 600">{{ idea?.nbVotes }}</span>
+            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVotes }}</span>
         </div>
         <div style="clear: both"></div>
     </div>
