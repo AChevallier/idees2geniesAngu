@@ -40,4 +40,28 @@ export class ListeIdeesComponent{
                 () => console.log('Authentication Complete')
             );
     }
+
+    vote(id){
+
+        let creds = JSON.stringify({id: id});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'idea/vote', creds, {
+            headers: headers
+        }).map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(JSON.parse(data));
+                    this.getIdeasPosted();
+                },
+                err => err.json().message,
+                () => console.log('Authentication Complete')
+            );
+
+
+
+    }
 }
