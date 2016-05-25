@@ -1,0 +1,106 @@
+<style type="text/css">
+
+    .container{
+        padding: 10px;
+        background-color: #e9e9e9;
+        height: auto;
+        width: 425px;
+        margin: 30px auto;
+    }
+
+    .container-img{
+        float: left;
+        width: 20%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .container-contenu{
+        float: left;
+        width: 80%;
+    }
+
+    .container:hover{
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    .container-title{
+        font-size: 16px;
+        font-weight: 600;
+        width: 300px;
+    }
+
+    .tiret{
+        border-bottom: 1px solid #cdcdcd;
+        margin: 10px 0;
+    }
+
+
+</style>
+
+    <div>
+        <div style="float: left; width: 47%">
+            <div class="titre" style="text-align: left">Mes communautés</div>
+
+            <div class="container" *ngFor="#community of myCommunities">
+                <div class="container-img">
+                    <img src="../static/images/community.png" width="40">
+                </div>
+                <div class="container-contenu">
+                    <div class="container-title">{{ community.nameCommunity }}</div>
+                    <div class="tiret"></div>
+                    <span style="color: #989898; font-size: 10px; margin-right: 20px">Nombre d'idées : 0 </span>
+                    <span style="color: #989898; font-size: 10px">Nombre d'utilisateurs : 1</span>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+
+
+        </div>
+
+        <div style="float: right; width: 47%">
+            <div class="titre" style="text-align: left">Top 5 des idées</div>
+
+            <div class="container" *ngFor="#idea of top5ideas">
+                <div class="container-img">
+                    <img src="../static/images/idea.png" width="40">
+                </div>
+                <div class="container-contenu">
+                    <div class="container-title">{{ idea?.title }}</div>
+                    <div class="tiret"></div>
+
+                    <span style="color: #989898; font-size: 10px; margin-right: 20px">Nombre de vote : {{ idea?.nbVote }}</span>
+                    <span style="color: #989898; font-size: 10px">Publié le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
+
+
+                </div>
+                <div style="clear: both"></div>
+            </div>
+
+            <!--
+
+            <div class="idea" *ngFor="#idea of top5ideas">
+                <div class="idea-title">{{ idea?.title }}</div>
+                <!--<class="idea-date-author">par {{ idea?.auteur }}, le {{ idea?.date }}</div>
+                <div class="tiret"></div>
+                <div>
+                    <div style="float: left">
+                <span style="color: #989898; font-size: 10px">{{ idea?.firstNameAutor }} {{ idea?.nameAutor }} le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
+
+                    </div>
+                    <div style="float: right">
+                        <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVote }}</span>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+            </div>
+            -->
+
+
+
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+

@@ -1,10 +1,12 @@
 import {Component, OnInit} from 'angular2/core';
 import {LoginComponent} from './login.component';
-import {InformationComponent} from './information.component';
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {Headers, Http} from "angular2/http";
 import {AppSettings} from "./app.settings";
-import {ListeIdeesComponent} from "./liste_idees.component";
+import {IdeesComponent} from "./idees.component";
+import {CommunautesComponent} from "./communautes.component";
+import {AjouterIdeeComponent} from "./ajouter-idee.component";
+import {AccueilComponent} from "./accueil.component";
 
 @Component({
     selector: 'my-app',
@@ -13,8 +15,10 @@ import {ListeIdeesComponent} from "./liste_idees.component";
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
-    {path: '/accueil', name : 'Information', component: InformationComponent},
-    {path: '/liste',name : 'Liste' , component: ListeIdeesComponent},
+    {path: '/accueil', name : 'Accueil', component: AccueilComponent},
+    {path: '/idees',name : 'Idees' , component: IdeesComponent},
+    {path: '/ajouter-idee',name : 'AjouterIdee' , component: AjouterIdeeComponent},
+    {path: '/communautes',name : 'Communautes' , component: CommunautesComponent},
 ])
 export class AppComponent implements OnInit{
 
@@ -26,7 +30,7 @@ export class AppComponent implements OnInit{
 
     ngOnInit() {
         this.postToken()
-        this.name = localStorage.getItem('last_name') + " " + localStorage.getItem('first_name');
+        this.name = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
     }
 
     postToken() {

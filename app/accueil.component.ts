@@ -9,11 +9,11 @@ import {DatePipe} from "angular2/common";
 
 @Component({
     selector:'information',
-    templateUrl: 'template/information.html'
+    templateUrl: 'template/accueil.html'
 })
 
 
-export class InformationComponent{
+export class AccueilComponent{
 
     public receiveName;
     public top5ideas;
@@ -52,31 +52,6 @@ export class InformationComponent{
                 data => {
                     console.log(data)
                     this.myCommunities = JSON.parse(data);
-                },
-                err => this.logError(err.json().message),
-                () => console.log('sent idea')
-            );
-    }
-
-    postIdea(title, community, idea){
-
-        let creds = JSON.stringify({title: title.value, idCommunity:community.value ,idea:idea.value });
-
-        let headers = new Headers();
-        headers.append('token', localStorage.getItem('token'));
-
-        //headers.append('Content-Type', 'application/json');
-
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'idea/add', creds, {
-            headers: headers
-        })
-            .map(res => res.json())
-            .subscribe(
-                data => {
-                    console.log(data)
-                    //this.receiveName = JSON.parse(data);
                 },
                 err => this.logError(err.json().message),
                 () => console.log('sent idea')
