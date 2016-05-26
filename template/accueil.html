@@ -20,6 +20,11 @@
         width: 80%;
     }
 
+    .container-contenu-details{
+        color: #989898;
+        font-size: 12px
+    }
+
     .container:hover{
         cursor: pointer;
         opacity: 0.8;
@@ -50,8 +55,8 @@
                 <div class="container-contenu">
                     <div class="container-title">{{ community.nameCommunity }}</div>
                     <div class="tiret"></div>
-                    <span style="color: #989898; font-size: 10px; margin-right: 20px">Nombre d'idées : 0 </span>
-                    <span style="color: #989898; font-size: 10px">Nombre d'utilisateurs : 1</span>
+                    <span style="margin-right: 20px" class="container-contenu-details">Nombre d'idées : 0 </span>
+                    <span class="container-contenu-details">Nombre d'utilisateurs : 1</span>
                 </div>
                 <div style="clear: both"></div>
             </div>
@@ -70,8 +75,8 @@
                     <div class="container-title">{{ idea?.title }}</div>
                     <div class="tiret"></div>
 
-                    <span style="color: #989898; font-size: 10px; margin-right: 20px">Nombre de vote : {{ idea?.nbVote }}</span>
-                    <span style="color: #989898; font-size: 10px">Publié le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
+                    <span style="margin-right: 20px" class="container-contenu-details">Nombre de vote : {{ idea?.nbVote }}</span>
+                    <span class="container-contenu-details">Publié le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
 
 
                 </div>
