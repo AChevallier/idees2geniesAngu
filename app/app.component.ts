@@ -50,7 +50,7 @@ export class AppComponent implements OnInit{
                     this.tokenValidate = (JSON.parse(data).valide);
 
                     if (this.tokenValidate === true) {
-                        this.router.navigate(['Information']);
+                        this.router.navigate(['Accueil']);
                     }
                     else{
                         this.router.navigate(['Login']);
