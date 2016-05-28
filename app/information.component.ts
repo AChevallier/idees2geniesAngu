@@ -12,7 +12,8 @@ import {Router} from 'angular2/router';
 })
 export class InformationComponent{
 
-    public receiveName;
+    public resultAddIdea;
+    public boolAddIdea;
 
 
     constructor(private router: Router,private http:Http) {
@@ -44,10 +45,20 @@ export class InformationComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
-                    //this.receiveName = JSON.parse(data);
+                    let parsedData = JSON.parse(data);
+                    if(parsedData.error){
+                        this.resultAddIdea = 'Erreur';
+                        this.boolAddIdea = false;
+                    }
+                    else{
+                        this.resultAddIdea = 'C\'est fait';
+                        this.boolAddIdea = true;
+                    }
                 },
-                err => this.logError(err.json().message),
+                err => {
+                    this.resultAddIdea = 'Erreur';
+                    this.boolAddIdea = false;
+                },
                 () => console.log('sent idea')
             );
         }
