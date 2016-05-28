@@ -1,6 +1,7 @@
 <div *ngIf="!router.isRouteActive(router.generate(['Login']))" class="menu">
-    <div [routerLink]="['Information']" class="menu-item">Accueil</div>
-    <div [routerLink]="['Liste']" class="menu-item">Liste des idées</div>
+    <div [routerLink]="['Accueil']" class="menu-item">Accueil</div>
+    <div [routerLink]="['Idees']" class="menu-item">Les idées</div>
+    <div [routerLink]="['Communautes']" class="menu-item">Les communautés</div>
     <div class="menu-user"><b>{{ name }}</b> | <a (click)="logout()" class="souris_dessus_pointer souris_dessus_souligne">Se déconnecter</a></div>
 </div>
 <div id="bloc_corps">

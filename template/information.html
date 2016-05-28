@@ -67,12 +67,7 @@
                     <div><input type="text" #title id="title" ng-control="title" required></div>
                     <div class="titre_form">Votre idée :</div>
                     <div><textarea id="idea" #idea name="idea"></textarea> </div>
-                    <div style="text-align: center">
-                        <button (click)="postIdea(title, idea)" >Ajouter mon idée</button>
-                        <span style="color:green;" *ngIf="boolAddIdea">{{ resultAddIdea }}</span>
-                        <span style="color:red;" *ngIf="!boolAddIdea">{{ resultAddIdea }}</span>
-                    </div>
-
+                    <div style="text-align: center"><button (click)="postIdea(title, idea)" >Ajouter mon idée</button></div>
                 </form>
             </div>
         </div>

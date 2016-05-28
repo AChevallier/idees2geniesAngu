@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                     password.value = null;
 
                     if (this.tokenValidate === true) {
-                        this.router.navigate(['Information']);
+                        this.router.navigate(['Accueil']);
                     }
                 },
                 err => this.logError(err.json().message),

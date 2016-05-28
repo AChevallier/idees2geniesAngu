@@ -5,15 +5,19 @@ import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
+import {DatePipe} from "angular2/common";
 
 @Component({
     selector:'information',
-    templateUrl: 'template/information.html'
+    templateUrl: 'template/accueil.html'
 })
-export class InformationComponent{
 
-    public resultAddIdea;
-    public boolAddIdea;
+
+export class AccueilComponent{
+
+    public receiveName;
+    public top5ideas;
+    public myCommunities;
 
 
     constructor(private router: Router,private http:Http) {
@@ -22,15 +26,16 @@ export class InformationComponent{
     ngOnInit() {
 
         this.getTime();
+        this.getMyCommunities();
+        this.getTop5Ideas();
     }
 
     logError(err) {
         console.error('There was an error: ' + err);
     }
 
-    postIdea(title, idea){
-
-        let creds = JSON.stringify({title: title.value, idea:idea.value });
+    getMyCommunities(){
+        let creds = '';
 
         let headers = new Headers();
         headers.append('token', localStorage.getItem('token'));
@@ -39,29 +44,41 @@ export class InformationComponent{
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-        this.http.post(AppSettings.API_ENDPOINT + 'idea/add', creds, {
-            headers: headers
-        })
+        this.http.post(AppSettings.API_ENDPOINT + 'community/myCommunities', creds, {
+                headers: headers
+            })
             .map(res => res.json())
             .subscribe(
                 data => {
-                    let parsedData = JSON.parse(data);
-                    if(parsedData.error){
-                        this.resultAddIdea = 'Erreur';
-                        this.boolAddIdea = false;
-                    }
-                    else{
-                        this.resultAddIdea = 'C\'est fait';
-                        this.boolAddIdea = true;
-                    }
+                    console.log(data)
+                    this.myCommunities = JSON.parse(data);
                 },
-                err => {
-                    this.resultAddIdea = 'Erreur';
-                    this.boolAddIdea = false;
-                },
+                err => this.logError(err.json().message),
                 () => console.log('sent idea')
             );
-        }
+    }
+
+    getTop5Ideas(){
+        let creds = '';
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'idea/top5', creds, {
+                headers: headers
+            })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(data)
+                    this.top5ideas = JSON.parse(data);
+                },
+                err => this.logError(err.json().message),
+                () => console.log('sent idea')
+            );
+    }
 
     getTime(){
         this.http.get(AppSettings.API_ENDPOINT + 'ping').map(res => res.json()).subscribe(
