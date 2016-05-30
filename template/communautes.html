@@ -1,1 +1,54 @@
-<div class="titre">Les communautés</div>
+<style type="text/css">
+    .community{
+        padding: 10px;
+        background-color: #e9e9e9;
+        height: auto;
+        width: 500px;
+        margin: 30px auto;
+    }
+
+    .community-title{
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .community-description{
+        text-align: justify;
+        line-height: 20px;
+    }
+
+    .tiret{
+        border-bottom: 1px solid #cdcdcd;
+        margin: 10px 0;
+    }
+
+</style>
+
+
+
+<div class="titre">Les communautés :</div>
+
+<div class="community" *ngFor="#community of Communities">
+    <div class="community-title">{{ community?.name }}</div>
+    <div class="tiret"></div>
+    <div class="community-description">
+        {{ community?.description }}
+    </div>
+    <div class="tiret"></div>
+    <div>
+        <div style="float: left">
+            <span class="souris_dessus_souligne souris_dessus_pointer">
+                <span *ngIf="!community?.joinUser" (click)="join(community?.id)" style="color: #989898"><img src="../static/images/join.png" width="30"> J'adhère</span>
+                <span *ngIf="community?.joinUser" (click)="join(community?.id)" style="color: #5890ff; font-weight: 500"><img src="../static/images/join-true.png" width="30"> J'adhère</span>
+             </span>
+
+        </div>
+        <div style="float: right">
+            <img src="../static/images/nbUsers.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ community?.nbUsers }}</span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+</div>
+
+
