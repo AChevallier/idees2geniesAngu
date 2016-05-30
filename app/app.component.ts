@@ -7,11 +7,13 @@ import {IdeesComponent} from "./idees.component";
 import {CommunautesComponent} from "./communautes.component";
 import {AjouterIdeeComponent} from "./ajouter-idee.component";
 import {AccueilComponent} from "./accueil.component";
+import {LoginService} from "./login.service";
 
 @Component({
     selector: 'my-app',
     templateUrl: 'template/my-app.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [LoginService]
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
@@ -20,45 +22,29 @@ import {AccueilComponent} from "./accueil.component";
     {path: '/ajouter-idee',name : 'AjouterIdee' , component: AjouterIdeeComponent},
     {path: '/communautes',name : 'Communautes' , component: CommunautesComponent},
 ])
+
 export class AppComponent implements OnInit{
 
     tokenValidate:boolean;
 
     public name;
-    constructor(private router: Router, private http: Http) {
+    constructor(private loginService: LoginService, private router: Router, private http: Http) {
     }
 
     ngOnInit() {
-        this.postToken()
+        this.onPostToken()
         this.name = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
     }
 
-    postToken() {
-        let token = localStorage.getItem('token');
+    onPostToken() {
 
-        let creds = JSON.stringify({token: token});
-
-        let headers = new Headers();
-        //headers.append('Content-Type', 'application/json');
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
-            headers: headers
-        }).map(res => res.json())
-            .subscribe(
-                data => {
-                    this.tokenValidate = (JSON.parse(data).valide);
-
-                    if (this.tokenValidate === true) {
-                        this.router.navigate(['Accueil']);
-                    }
-                    else{
-                        this.router.navigate(['Login']);
-                    }
-                },
-                err => console.error('There was an error: ' + err.json().message),
-                () => console.log('Checking token done')
-            );
+        this.loginService.postToken().subscribe((result) => {
+            if (result.valide) {
+                this.router.navigate(['Accueil']);
+            }else{
+                this.router.navigate(['Login']);
+            }
+        });
     }
 
     logout() {

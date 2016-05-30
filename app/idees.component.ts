@@ -1,12 +1,15 @@
 import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
-import {Router} from 'angular2/router';
+import {Router, CanActivate} from 'angular2/router';
 import {Json} from "angular2/src/facade/lang";
+import {isLoggedIn} from "./login.service";
 
 @Component({
     templateUrl: 'template/idees.html'
 })
+
+@CanActivate(isLoggedIn)
 export class IdeesComponent{
 
     public ideasJson = [];
