@@ -15,13 +15,11 @@ import {CanActivate} from "angular2/router";
     templateUrl: 'template/communaute.html'
 })
 
-@CanActivate(isLoggedIn)
+
 export class CommunauteComponent{
 
     public idCommunity;
     public community;
-    public nameCommunity;
-    public descriptionCommunity;
     public ideasCommunity;
     public usersCommunity;
 
@@ -52,11 +50,8 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
+                    console.log(data);
                     this.community = JSON.parse(data);
-
-                    this.nameCommunity = this.community.name;
-                    this.descriptionCommunity = this.community.description;
 
                 },
                 err => err.json().message,
@@ -78,7 +73,7 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
+                    console.log(data);
                     this.ideasCommunity = JSON.parse(data);
                 },
                 err => () => console.log('Erreur')
@@ -99,8 +94,11 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
-                    this.usersCommunity = JSON.parse(data);
+                    console.log(data);
+
+                    if(data !== ""){
+                        this.usersCommunity = JSON.parse(data);
+                    }
                 },
                 err => () => console.log('Erreur')
             );
@@ -128,5 +126,26 @@ export class CommunauteComponent{
 
 
 
+    }
+
+    join(id){
+        let creds = JSON.stringify({id: id});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'community/join', creds, {
+            headers: headers
+        }).map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(JSON.parse(data));
+                    this.getCommunity();
+                    this.getUsersCommunity();
+                },
+                err => err.json().message,
+                () => console.log('Authentication Complete')
+            );
     }
 }

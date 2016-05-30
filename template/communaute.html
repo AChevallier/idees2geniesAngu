@@ -75,9 +75,26 @@
 
 <div>
     <div style="float: left; width: 47%">
-            <div class="titre" style="text-align: left">{{nameCommunity}}</div>
+            <div class="titre" style="text-align: left">{{community?.name}}</div>
 
-        <div class="container" style="text-align: justify; line-height: 20px;" [innerHTML]="descriptionCommunity"></div>
+        <div class="container" style="text-align: justify; line-height: 20px;">
+            <div [innerHTML]="community?.description"></div>
+            <div class="tiret"></div>
+            <div>
+                <div style="float: left">
+            <span class="souris_dessus_souligne souris_dessus_pointer">
+                <span *ngIf="!community?.joinUser" (click)="join(community?.id)" style="color: #989898"><img src="../static/images/join.png" width="30"> J'adhère</span>
+                <span *ngIf="community?.joinUser" (click)="join(community?.id)" style="color: #5890ff; font-weight: 500"><img src="../static/images/join-true.png" width="30"> J'adhère</span>
+             </span>
+
+                </div>
+                <div style="float: right">
+                    <img src="../static/images/nbUsers.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ community?.nbUsers }}</span>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+
+        </div>
 
         <div class="titre" style="text-align: left">Les utilisateurs</div>
         <div class="container" *ngFor="#user of usersCommunity">
@@ -85,7 +102,7 @@
                 <img src="../static/images/user.png" width="25">
             </div>
             <div class="container-contenu">
-                <div class="container-title">{{ user.firstNameUser }} {{ user.nameUser }}</div>
+                <div class="container-title">{{ user?.firstNameUser }} {{ user?.nameUser }}</div>
                 <div class="tiret"></div>
 
                 <span style="margin-right: 20px" class="container-contenu-details">Nombre de idées : </span>
