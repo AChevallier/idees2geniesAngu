@@ -137,6 +137,10 @@ button:hover{
     cursor: pointer;
 }
 
+.souris_dessus_opacity:hover{
+    opacity: 0.8;
+}
+
 .souris_dessus_souligne:hover{
     text-decoration: underline;
 }

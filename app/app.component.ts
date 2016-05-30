@@ -7,6 +7,7 @@ import {IdeesComponent} from "./idees.component";
 import {CommunautesComponent} from "./communautes.component";
 import {AjouterIdeeComponent} from "./ajouter-idee.component";
 import {AccueilComponent} from "./accueil.component";
+import {CommunauteComponent} from "./communaute.component";
 import {LoginService} from "./login.service";
 
 @Component({
@@ -21,8 +22,8 @@ import {LoginService} from "./login.service";
     {path: '/idees',name : 'Idees' , component: IdeesComponent},
     {path: '/ajouter-idee',name : 'AjouterIdee' , component: AjouterIdeeComponent},
     {path: '/communautes',name : 'Communautes' , component: CommunautesComponent},
+    {path: '/communaute/:id',name : 'Communaute' , component: CommunauteComponent},
 ])
-
 export class AppComponent implements OnInit{
 
     tokenValidate:boolean;

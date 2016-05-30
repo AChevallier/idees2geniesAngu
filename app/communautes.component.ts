@@ -68,4 +68,8 @@ export class CommunautesComponent{
                 () => console.log('Authentication Complete')
             );
     }
+
+    communityPage(id){
+        this.router.navigate(['Communaute', { id: id }]);
+    }
 }
