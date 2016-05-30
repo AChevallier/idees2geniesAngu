@@ -8,12 +8,14 @@ import {Router} from 'angular2/router';
 import {DatePipe} from "angular2/common";
 import {ElementRef} from "angular2/core";
 import {RouteParams} from "angular2/router";
+import {LoginService, isLoggedIn} from "./login.service";
+import {CanActivate} from "angular2/router";
 
 @Component({
     templateUrl: 'template/communaute.html'
 })
 
-
+@CanActivate(isLoggedIn)
 export class CommunauteComponent{
 
     public idCommunity;
