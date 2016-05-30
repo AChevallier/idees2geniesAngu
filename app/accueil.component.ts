@@ -4,15 +4,17 @@
 import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
-import {Router} from 'angular2/router';
+import {Router, CanActivate} from 'angular2/router';
 import {DatePipe} from "angular2/common";
+import {LoginService, isLoggedIn} from "./login.service";
 
 @Component({
     selector:'information',
-    templateUrl: 'template/accueil.html'
+    templateUrl: 'template/accueil.html',
+    providers: [LoginService]
 })
 
-
+@CanActivate(isLoggedIn)
 export class AccueilComponent{
 
     public receiveName;
@@ -21,10 +23,10 @@ export class AccueilComponent{
 
 
     constructor(private router: Router,private http:Http) {
+
     }
 
     ngOnInit() {
-
         this.getTime();
         this.getMyCommunities();
         this.getTop5Ideas();

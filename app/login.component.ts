@@ -3,13 +3,15 @@ import {Component, OnInit} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
+import {LoginService} from './login.service';
 
 //call md5.js
 declare var md5:any;
 
 @Component({
     selector:'information',
-    templateUrl: 'template/login.html'
+    templateUrl: 'template/login.html',
+    providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
     public receiveName;
@@ -18,11 +20,11 @@ export class LoginComponent implements OnInit {
     tokenValidate = false;
 
 
-    constructor(private router: Router, private http:Http) {
+    constructor(private loginService: LoginService, private router: Router, private http : Http) {
     }
 
     ngOnInit() {
-        this.postToken();
+        this.onPostToken();
     }
 
     logError(err) {
@@ -36,58 +38,28 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    authenticate(login, password) {
+    onAuthenticate(login, password) {
 
-        let creds = JSON.stringify({login: login.value, password: md5(password.value)});
-
-        let headers = new Headers();
-        //headers.append('Content-Type', 'application/json');
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'user/login', creds, {
-            headers: headers
-        }).map(res => res.json())
-            .subscribe(
-                data => {
-                    let dataParsed = JSON.parse(data);
-                    this.saveToken(dataParsed.token);
-                    localStorage.setItem('last_name', dataParsed.name);
-                    localStorage.setItem('first_name', dataParsed.firstName);
-                    login.value = null;
-                    password.value = null;
-
-                    if (this.tokenValidate === true) {
-                        this.router.navigate(['Accueil']);
-                    }
-                },
-                err => this.logError(err.json().message),
-                () => console.log('Authentication Complete')
-            );
+        this.loginService.authenticate(login, password).subscribe((result) => {
+            if (result) {
+                this.router.navigate(['Accueil']);
+            }else{
+                this.router.navigate(['Login']);
+            }
+        });
     }
 
-    postToken() {
-        let token = localStorage.getItem('token');
+    onPostToken() {
 
-        let creds = JSON.stringify({token: token});
-
-        let headers = new Headers();
-        //headers.append('Content-Type', 'application/json');
-        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        this.http.post(AppSettings.API_ENDPOINT + 'user/isValideToken', creds, {
-            headers: headers
-        }).map(res => res.json())
-            .subscribe(
-                data => {
-                    this.tokenValidate = (JSON.parse(data).valide);
-
-                    if (this.tokenValidate === true) {
-                        this.router.navigate(['Information']);
-                    }
-                },
-                err => console.error('There was an error: ' + err.json().message),
-                () => console.log('Checking token done')
-            );
+        this.loginService.postToken().subscribe((result) => {
+            console.log('to');
+            if (result.valide) {
+                console.log('done');
+                this.router.navigate(['Accueil']);
+            }else{
+                this.router.navigate(['Login']);
+            }
+        });
     }
 
 }
