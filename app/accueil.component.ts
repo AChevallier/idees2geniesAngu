@@ -7,6 +7,7 @@ import {AppSettings} from './app.settings';
 import {Router} from 'angular2/router';
 import {DatePipe} from "angular2/common";
 
+
 @Component({
     selector:'information',
     templateUrl: 'template/accueil.html'
@@ -18,6 +19,8 @@ export class AccueilComponent{
     public receiveName;
     public top5ideas;
     public myCommunities;
+
+    public id;
 
 
     constructor(private router: Router,private http:Http) {
@@ -91,5 +94,9 @@ export class AccueilComponent{
             // the third argument is a function which runs on completion
             () => console.log('done loading time')
         );
+    }
+
+    communityPage(id){
+        this.router.navigate(['Communaute', { id: id }]);
     }
 }

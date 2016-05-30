@@ -29,11 +29,7 @@
 <div class="titre">Les communautés :</div>
 
 <div class="community" *ngFor="#community of Communities">
-    <div class="community-title">{{ community?.name }}</div>
-    <div class="tiret"></div>
-    <div class="community-description">
-        {{ community?.description }}
-    </div>
+    <div class="community-title souris_dessus_pointer souris_dessus_souligne" (click)="communityPage(community.id )">{{ community?.name }}</div>
     <div class="tiret"></div>
     <div>
         <div style="float: left">
