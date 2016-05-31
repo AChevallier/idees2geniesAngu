@@ -97,15 +97,22 @@
         </div>
 
         <div class="titre" style="text-align: left">Les utilisateurs</div>
+
+        <div *ngIf="usersCommunity == 0" class="container">
+            Aucun utilisateur.
+        </div>
+
         <div class="container" *ngFor="#user of usersCommunity">
             <div class="container-img">
-                <img src="../static/images/user.png" width="25">
+                <img src="../static/images/user.png" width="20">
             </div>
             <div class="container-contenu">
+
                 <div class="container-title">{{ user?.firstNameUser }} {{ user?.nameUser }}</div>
                 <div class="tiret"></div>
 
-                <span style="margin-right: 20px" class="container-contenu-details">Nombre de idées : </span>
+                <span style="margin-right: 20px" class="container-contenu-details">Nombre d'idées : </span>
+                <span class="container-contenu-details">Nombre de commentaires : </span>
 
 
             </div>
@@ -119,6 +126,12 @@
         <div class="titre" style="text-align: left">Les idées</div>
 
         <div class="container">
+
+            <div *ngIf="ideasCommunity == 0">
+                Aucune idée.
+            </div>
+
+
             <div class="idea" *ngFor="#idea of ideasCommunity">
                 <div class="idea-title">{{ idea?.title }}</div>
                 <div class="idea-date-author">par {{ idea?.auteur }}, le {{ idea?.date }}</div>

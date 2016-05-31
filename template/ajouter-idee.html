@@ -1,61 +1,12 @@
 <style type="text/css">
-    .titre_form{
-        margin-bottom: 5px;
-    }
-    input[type="text"]{
-        width:100%;
-        height:35px;
-        margin-bottom: 15px;
-        padding: 5px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size:13px;
-        border: 1px solid #c7c7c7;
-    }
 
-    select{
-        width:100%;
-        height:35px;
-        margin-bottom: 15px;
-        padding: 5px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size:13px;
-        border: 1px solid #c7c7c7;
-        background-color: #FFFFFF;
-    }
-    textarea{
-        resize: none;
-        width: 100%;
-        height: 100px;
-        margin-bottom: 15px;
-        padding: 5px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size:13px;
-        border: 1px solid #c7c7c7;
-    }
-    textarea:hover {
-        cursor: pointer;
-    }
 </style>
 
 <div class="titre">Ajouter une idée</div>
 
 <div style="margin: auto">
-    <form>
-        <div class="titre_form">Titre* :</div>
-        <div><input type="text" #title id="title" ng-control="title" required></div>
-        <div class="titre_form">Communauté :</div>
-        <select #community>
-            <option value="" selected></option>
-            <option *ngFor="#community of myCommunities" value="{{community.idCommunity}}">{{community.nameCommunity}}</option>
-        </select>
-        <div class="titre_form">Votre idée* :</div>
-        <div><textarea id="idea" #idea name="idea"></textarea> </div>
-        <div style="text-align: center"><button (click)="postIdea(title, community, idea)" >Ajouter mon idée</button></div>
-    </form>
+
+    
+
+
 </div>
