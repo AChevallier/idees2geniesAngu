@@ -151,6 +151,7 @@ export class IdeesComponent{
             .subscribe(
                 data => {
                     comment.value = null;
+                    this.getIdeasPosted();
                     console.log('add comment done');
                 },
                 err => this.logError(err.json().message),

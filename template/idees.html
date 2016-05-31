@@ -126,7 +126,7 @@
 
         </div>
         <div style="float: right">
-            <span (click)="afficher_masquer_bloc(idea?.id)" class="souris_dessus_pointer souris_dessus_souligne"><img src="../static/images/comment.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">2 commentaires</span></span>
+            <span (click)="afficher_masquer_bloc(idea?.id)" class="souris_dessus_pointer souris_dessus_souligne"><img src="../static/images/comment.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbComments }} commentaires</span></span>
             <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVotes }} votes</span>
         </div>
         <div style="clear: both"></div>
