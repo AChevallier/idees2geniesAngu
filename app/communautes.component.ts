@@ -41,7 +41,6 @@ export class CommunautesComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.Communities = JSON.parse(data);
                 },
                 err => err.json().message,
@@ -61,7 +60,6 @@ export class CommunautesComponent{
         }).map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(JSON.parse(data));
                     this.getAllCommunities();
                 },
                 err => err.json().message,

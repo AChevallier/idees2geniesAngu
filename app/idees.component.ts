@@ -58,7 +58,6 @@ export class IdeesComponent{
         }).map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(JSON.parse(data));
                     this.getIdeasPosted();
                 },
                 err => err.json().message,
@@ -127,7 +126,6 @@ export class IdeesComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.myCommunities = JSON.parse(data);
                 },
                 err => this.logError(err.json().message),

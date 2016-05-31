@@ -52,9 +52,7 @@ export class LoginComponent implements OnInit {
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
-            console.log('to');
             if (result.valide) {
-                console.log('done');
                 this.router.navigate(['Accueil']);
             }else{
                 this.router.navigate(['Login']);

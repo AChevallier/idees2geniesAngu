@@ -55,7 +55,6 @@ export class AccueilComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.myCommunities = JSON.parse(data);
                 },
                 err => this.logError(err.json().message),
@@ -77,7 +76,6 @@ export class AccueilComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.top5ideas = JSON.parse(data);
                 },
                 err => this.logError(err.json().message),
