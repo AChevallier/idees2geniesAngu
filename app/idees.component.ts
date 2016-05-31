@@ -99,7 +99,7 @@ export class IdeesComponent{
                 );
     }
 
-    afficher_masquer_bloc_ajouter(id){
+    afficher_masquer_bloc(id){
         var bloc_ajouter = document.getElementById(id);
         var etat_bloc_ajouter = bloc_ajouter.style.display;
 
