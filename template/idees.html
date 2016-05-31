@@ -122,8 +122,8 @@
     <div class="tiret"></div>
 
     <div style="background-color: #ececec;; width: 100%">
-        <input type="text" style="margin: 0; width: 406px" placeholder="Laissez un commentaire...">
-        <input type="button" style="margin: 0; width: 90px" value="Commenter">
+        <input type="text" #comment style="margin: 0; width: 406px" placeholder="Laissez un commentaire...">
+        <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
 
     </div>
 

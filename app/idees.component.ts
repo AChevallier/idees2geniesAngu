@@ -139,4 +139,27 @@ export class IdeesComponent{
             );
     }
 
+    //post comment | args : comment, idIdea
+    postComment(comment, idIdea) {
+        let creds = JSON.stringify({comment : comment.value, idIdea : idIdea});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        //headers.append('Content-Type', 'application/json');
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'comment/add', creds, {
+            headers: headers
+        })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log('add comment done');
+                },
+                err => this.logError(err.json().message),
+                () => console.log('add comment sent')
+            );
+    }
 }
