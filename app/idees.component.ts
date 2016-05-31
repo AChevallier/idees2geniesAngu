@@ -1,8 +1,7 @@
 import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
-import {Router, CanActivate} from 'angular2/router';
-import {Json} from "angular2/src/facade/lang";
+import {CanActivate} from 'angular2/router';
 import {isLoggedIn} from "./login.service";
 
 @Component({
@@ -15,7 +14,7 @@ export class IdeesComponent{
     public ideasJson = [];
     public myCommunities;
 
-    constructor(private router: Router,private http:Http) {
+    constructor(private http:Http) {
     }
     public dataParsed = [];
 
@@ -72,9 +71,6 @@ export class IdeesComponent{
 
     postIdea(title, community, idea){
 
-        console.log(title);
-        console.log(idea);
-
             let creds = JSON.stringify({title: title.value, idCommunity:community.value ,idea:idea.value });
 
             let headers = new Headers();
@@ -91,8 +87,8 @@ export class IdeesComponent{
                 .subscribe(
                     data => {
                         this.getIdeasPosted();
-                        console.log(data)
-                        //this.receiveName = JSON.parse(data);
+                        title.value = null;
+                        idea.value = null;
                     },
                     err => this.logError(err.json().message),
                     () => console.log('sent idea')
@@ -156,6 +152,7 @@ export class IdeesComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
+                    comment.value = null;
                     console.log('add comment done');
                 },
                 err => this.logError(err.json().message),
