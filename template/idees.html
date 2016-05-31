@@ -139,16 +139,9 @@
         <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
 
     <div id="{{idea?.id}}" class="idee-comment-container">
-        <div style="margin-bottom: 6px">
-            <span class="idee-comment-author">Steve Vandycke </span><span class="id-comment-comment">C'est super !!!</span>
-        </div>
-        <div style="margin-bottom: 6px">
-            <span class="idee-comment-author">Steve Vandycke </span><span class="id-comment-comment">C'est super !!!</span>
+        <div id="comment_{{ comment?.id }}" *ngFor="#comment of idea?.comments" style="margin-bottom: 6px">
+            <span class="idee-comment-author">{{ comment?.authorFirstName }} {{ comment?.authorName }} </span><span class="id-comment-comment">{{ comment.comment }}</span>
         </div>
     </div>
 
 </div>
-
-
-
-
