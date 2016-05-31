@@ -1,8 +1,7 @@
 import {Component} from 'angular2/core';
 import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
-import {Router, CanActivate} from 'angular2/router';
-import {Json} from "angular2/src/facade/lang";
+import {CanActivate} from 'angular2/router';
 import {isLoggedIn} from "./login.service";
 
 @Component({
@@ -15,7 +14,7 @@ export class IdeesComponent{
     public ideasJson = [];
     public myCommunities;
 
-    constructor(private router: Router,private http:Http) {
+    constructor(private http:Http) {
     }
     public dataParsed = [];
 
@@ -59,7 +58,6 @@ export class IdeesComponent{
         }).map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(JSON.parse(data));
                     this.getIdeasPosted();
                 },
                 err => err.json().message,
@@ -71,9 +69,6 @@ export class IdeesComponent{
     }
 
     postIdea(title, community, idea){
-
-        console.log(title);
-        console.log(idea);
 
             let creds = JSON.stringify({title: title.value, idCommunity:community.value ,idea:idea.value });
 
@@ -91,8 +86,8 @@ export class IdeesComponent{
                 .subscribe(
                     data => {
                         this.getIdeasPosted();
-                        console.log(data)
-                        //this.receiveName = JSON.parse(data);
+                        title.value = null;
+                        idea.value = null;
                     },
                     err => this.logError(err.json().message),
                     () => console.log('sent idea')
@@ -131,7 +126,6 @@ export class IdeesComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data)
                     this.myCommunities = JSON.parse(data);
                 },
                 err => this.logError(err.json().message),
@@ -139,4 +133,29 @@ export class IdeesComponent{
             );
     }
 
+    //post comment | args : comment, idIdea
+    postComment(comment, idIdea) {
+        let creds = JSON.stringify({comment : comment.value, idIdea : idIdea});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        //headers.append('Content-Type', 'application/json');
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'comment/add', creds, {
+            headers: headers
+        })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    comment.value = null;
+                    this.getIdeasPosted();
+                    console.log('add comment done');
+                },
+                err => this.logError(err.json().message),
+                () => console.log('add comment sent')
+            );
+    }
 }

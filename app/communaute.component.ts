@@ -50,7 +50,6 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data);
                     this.community = JSON.parse(data);
 
                 },
@@ -73,7 +72,6 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data);
                     this.ideasCommunity = JSON.parse(data);
                 },
                 err => () => console.log('Erreur')
@@ -94,8 +92,6 @@ export class CommunauteComponent{
             .map(res => res.json())
             .subscribe(
                 data => {
-                    console.log(data);
-
                     if(data !== ""){
                         this.usersCommunity = JSON.parse(data);
                     }
