@@ -46,6 +46,7 @@ export class IdeesComponent{
             );
     }
 
+
     vote(id){
 
         let creds = JSON.stringify({id: id});
@@ -59,6 +60,7 @@ export class IdeesComponent{
         }).map(res => res.json())
             .subscribe(
                 data => {
+                    console.log(JSON.parse(data));
                     this.getIdeasPosted();
                 },
                 err => err.json().message,

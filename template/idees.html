@@ -122,15 +122,15 @@
     <div class="tiret"></div>
     <div>
         <div style="float: left">
-            <span class="souris_dessus_souligne souris_dessus_pointer" style="margin-right: 10px">
+            <span class="souris_dessus_souligne souris_dessus_pointer">
                 <span *ngIf="!idea?.voteUser" (click)="vote(idea?.id)" style="color: #989898"><img src="../static/images/like.png" width="15"> Je vote</span>
                 <span *ngIf="idea?.voteUser" (click)="vote(idea?.id)" style="color: #5890ff; font-weight: 500"><img src="../static/images/like-true.png" width="15"> Je vote</span>
-            </span>
+             </span>
 
         </div>
         <div style="float: right">
             <span (click)="afficher_masquer_bloc(idea?.id)" class="souris_dessus_pointer souris_dessus_souligne"><img src="../static/images/comment.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbComments }} commentaires</span></span>
-            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVotes }} votes</span>
+            <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVotes }}</span>
         </div>
         <div style="clear: both"></div>
     </div>
