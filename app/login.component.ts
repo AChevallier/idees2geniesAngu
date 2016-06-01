@@ -49,10 +49,13 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    onRegister(){
+        this.router.navigate(['Register']);
+    }
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
-            if (result.valide) {
+            if (result.valid) {
                 this.router.navigate(['Accueil']);
             }else{
                 this.router.navigate(['Login']);

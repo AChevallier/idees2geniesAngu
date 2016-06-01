@@ -1,4 +1,4 @@
-<div *ngIf="!router.isRouteActive(router.generate(['Login']))" class="menu">
+<div *ngIf="!router.isRouteActive(router.generate(['Register'])) && !router.isRouteActive(router.generate(['Login']))" class="menu">
     <div [routerLink]="['Accueil']" class="menu-item">Accueil</div>
     <div [routerLink]="['Idees']" class="menu-item">Les idées</div>
     <div [routerLink]="['Communautes']" class="menu-item">Les communautés</div>

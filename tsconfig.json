@@ -11,7 +11,12 @@
   },
   "exclude": [
     "node_modules",
-    "typings/main",
-    "typings/main.d.ts"
+    "/node_modules",
+    "../node_modules",
+    "*node_modules*",
+    "/node_modules*",
+    "angular2",
+    "rxjs",
+    "typings"
   ]
 }

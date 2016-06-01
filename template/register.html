@@ -1,0 +1,28 @@
+<!-------------------------------------------------->
+<!-------------------------------------------------->
+
+<style type="text/css">
+
+</style>
+
+<!-------------------------------------------------->
+<!-------------------------------------------------->
+
+<div id="bloc_corps">
+
+    <div class="titre" style="text-align: center">Inscription</div>
+
+    <div style="text-align: center">
+        <form>
+            <p></p>
+            <div><input type="text" #firstName id="firstName"  ngControl="firstName" required placeholder="Nom"></div>
+            <div><input type="text" #name id="name"  ngControl="name" required placeholder="Prénom" ></div>
+            <div><input type="email" #login id="login"  ngControl="login" required placeholder="Adresse email" class="input_email"></div>
+            <div><input type="password" #password id="password" ngControl="password" required placeholder="Mot de passe"></div>
+
+            <div><button (click)="onInscription(firstName, name, login, password)">Inscription</button></div>
+
+        </form>
+    </div>
+
+</div>

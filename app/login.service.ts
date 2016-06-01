@@ -20,6 +20,7 @@ export class LoginService {
         this.postToken();
     }
 
+    
     authenticate(login, password) {
         let creds = JSON.stringify({login: login.value, password: md5(password.value)});
 

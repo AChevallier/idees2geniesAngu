@@ -9,15 +9,18 @@ import {AjouterIdeeComponent} from "./ajouter-idee.component";
 import {AccueilComponent} from "./accueil.component";
 import {CommunauteComponent} from "./communaute.component";
 import {LoginService} from "./login.service";
+import {RegisterComponent} from "./registrer.component";
+import {RegisterService} from "./register.service";
 
 @Component({
     selector: 'my-app',
     templateUrl: 'template/my-app.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService]
+    providers: [LoginService, RegisterService]
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
+    {path: '/register',name : 'Register' , component: RegisterComponent},
     {path: '/accueil', name : 'Accueil', component: AccueilComponent},
     {path: '/idees',name : 'Idees' , component: IdeesComponent},
     {path: '/ajouter-idee',name : 'AjouterIdee' , component: AjouterIdeeComponent},
@@ -40,7 +43,7 @@ export class AppComponent implements OnInit{
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
-            if (result.valide) {
+            if (result.valid) {
                 
             }else{
                 this.router.navigate(['Login']);
