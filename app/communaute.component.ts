@@ -124,6 +124,30 @@ export class CommunauteComponent{
 
     }
 
+    voteComment(id){
+
+        let creds = JSON.stringify({id: id});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'comment/vote', creds, {
+            headers: headers
+        }).map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(JSON.parse(data));
+                    this.getIdeasCommunity();
+                },
+                err => err.json().message,
+                () => console.log('Authentication Complete')
+            );
+
+
+
+    }
+
     join(id){
         let creds = JSON.stringify({id: id});
 
@@ -142,6 +166,42 @@ export class CommunauteComponent{
                 },
                 err => err.json().message,
                 () => console.log('Authentication Complete')
+            );
+    }
+
+    afficher_masquer_bloc(id){
+        var bloc_ajouter = document.getElementById(id);
+        var etat_bloc_ajouter = bloc_ajouter.style.display;
+
+        if(etat_bloc_ajouter === 'block'){
+            bloc_ajouter.style.display = "none";
+        }
+        else{
+            bloc_ajouter.style.display = "block";
+        }
+    }
+
+    //post comment | args : comment, idIdea
+    postComment(comment, idIdea) {
+        let creds = JSON.stringify({comment : comment.value, idIdea : idIdea});
+
+        let headers = new Headers();
+        headers.append('token', localStorage.getItem('token'));
+
+        //headers.append('Content-Type', 'application/json');
+
+        headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        this.http.post(AppSettings.API_ENDPOINT + 'comment/add', creds, {
+                headers: headers
+            })
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    comment.value = null;
+                    this.getIdeasCommunity();
+                },
+                err => () => console.log('Erreur')
             );
     }
 }

@@ -34,8 +34,10 @@
    }
 
    .idee-comment-container{
-       padding: 20px 0 10px 0;
+       padding: 20px 0 5px 0;
        display: none;
+       font-size: 12px;
+       line-height: 15px;
    }
 
    .idee-comment-author{
@@ -138,10 +140,11 @@
         <input type="text" #comment style="margin: 0; width: 406px" placeholder="Laissez un commentaire...">
         <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
 
-    <div id="{{idea?.id}}" class="idee-comment-container">
-        <div id="comment_{{ comment?.id }}" *ngFor="#comment of idea?.comments" style="margin-bottom: 6px">
-            <span class="idee-comment-author">{{ comment?.authorFirstName }} {{ comment?.authorName }} </span><span class="id-comment-comment">{{ comment.comment }}</span>
+        <div id="{{idea?.id}}" class="idee-comment-container">
+            <div id="comment_{{ comment?.id }}" *ngFor="#comment of idea?.comments" style="margin-bottom: 6px">
+                <div style="line-height: 14px"><span class="idee-comment-author">{{ comment?.authorFirstName }} {{ comment?.authorName }} </span><span class="id-comment-comment">{{ comment.comment }}</span></div>
+                <div style="margin-top: 3px"><span style="color: #7b90bb; font-weight: 500" class="souris_dessus_pointer souris_dessus_souligne" (click)="voteComment(comment?.id)"> <span *ngIf="!comment?.voteUserComment">J'aime</span> <span *ngIf="comment?.voteUserComment">Je n'aime plus</span>  - </span><span style="color: #7B90BB; font-weight: 500"><img src="../static/images/nbLike.png" width="10"> {{comment?.nbCommentsVotes}}</span> - <span style="color: #727272; "> {{ comment?.publicateDate }}</span></div>
+            </div>
         </div>
     </div>
-
 </div>
