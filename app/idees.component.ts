@@ -3,6 +3,7 @@ import {Http, Response, Headers} from 'angular2/http';
 import {AppSettings} from './app.settings';
 import {CanActivate} from 'angular2/router';
 import {isLoggedIn} from "./login.service";
+import {Router} from "angular2/router";
 
 @Component({
     templateUrl: 'template/idees.html'
@@ -14,7 +15,7 @@ export class IdeesComponent{
     public ideasJson = [];
     public myCommunities;
 
-    constructor(private http:Http) {
+    constructor(private http:Http, private router: Router) {
     }
     public dataParsed = [];
 
@@ -181,5 +182,9 @@ export class IdeesComponent{
                 err => this.logError(err.json().message),
                 () => console.log('add comment sent')
             );
+    }
+
+    communityPage(id){
+        this.router.navigate(['Communaute', { id: id }]);
     }
 }

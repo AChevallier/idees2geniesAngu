@@ -143,9 +143,6 @@ export class CommunauteComponent{
                 err => err.json().message,
                 () => console.log('Authentication Complete')
             );
-
-
-
     }
 
     join(id){
@@ -163,6 +160,7 @@ export class CommunauteComponent{
                     console.log(JSON.parse(data));
                     this.getCommunity();
                     this.getUsersCommunity();
+                    this.getIdeasCommunity();
                 },
                 err => err.json().message,
                 () => console.log('Authentication Complete')

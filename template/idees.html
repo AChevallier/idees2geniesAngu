@@ -114,6 +114,7 @@
 <div class="idea" *ngFor="#idea of dataParsed">
     <div class="idea-title">{{ idea?.title }}</div>
     <div class="idea-date-author">par {{ idea?.auteur }}, le {{ idea?.date }}</div>
+    <div class="idea-date-author"><span style="color: #7b90bb; font-weight: 500" class="souris_dessus_pointer souris_dessus_souligne" (click)="communityPage(idea?.idCommunity)">{{idea?.nameCommunity}}</span></div>
     <div class="tiret"></div>
     <div class="idea-description">
         {{ idea?.idea }}
@@ -137,9 +138,10 @@
     <div class="tiret"></div>
 
     <div style="background-color: #ececec; width: 100%">
-        <input type="text" #comment style="margin: 0; width: 406px" placeholder="Laissez un commentaire...">
-        <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
-
+        <div *ngIf="idea?.userCanComment">
+            <input type="text" #comment style="margin: 0; width: 406px" placeholder="Laissez un commentaire...">
+            <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
+        </div>
         <div id="{{idea?.id}}" class="idee-comment-container">
             <div id="comment_{{ comment?.id }}" *ngFor="#comment of idea?.comments" style="margin-bottom: 6px">
                 <div style="line-height: 14px"><span class="idee-comment-author">{{ comment?.authorFirstName }} {{ comment?.authorName }} </span><span class="id-comment-comment">{{ comment.comment }}</span></div>

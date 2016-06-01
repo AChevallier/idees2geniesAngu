@@ -176,8 +176,10 @@
                     <div class="tiret"></div>
 
                     <div style="width: 100%">
-                        <input type="text" #comment style="margin: 0; width: 306px" placeholder="Laissez un commentaire...">
-                        <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
+                        <div *ngIf="idea?.userCanComment">
+                            <input type="text" #comment style="margin: 0; width: 306px" placeholder="Laissez un commentaire...">
+                            <input type="button" (click)="postComment(comment, idea?.id)" style="margin: 0; width: 90px" value="Commenter">
+                        </div>
 
                         <div id="{{idea?.id}}" class="idee-comment-container">
                             <div id="comment_{{ comment?.id }}" *ngFor="#comment of idea?.comments" style="margin-bottom: 6px">
