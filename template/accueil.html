@@ -68,7 +68,7 @@
         <div style="float: right; width: 47%">
             <div class="titre" style="text-align: left">Top 5 des idées</div>
 
-            <div class="container" *ngFor="#idea of top5ideas">
+            <div class="container" *ngFor="#idea of top5ideas" (click)="communityPage(idea?.idCommunityIdea)">
                 <div class="container-img">
                     <img src="../static/images/idea.png" width="40">
                 </div>
@@ -78,33 +78,18 @@
                     <div>
                         <span style="color: #7b90bb; font-weight: 500" class="souris_dessus_pointer souris_dessus_souligne container-contenu-details" (click)="communityPage(idea?.idCommunity)">{{idea?.nameCommunity}}</span>
                     </div>
+                    <div *ngIf="idea?.nameCommunityIdea">
+                        <span class="container-contenu-details">Communauté : </span>
+                        <span class="container-contenu-details souris_dessus_souligne souris_dessus_pointer" style="color: #7b90bb; font-weight: 500">{{idea?.nameCommunityIdea}}</span>
+                    </div>
+
+
                     <span style="margin-right: 20px" class="container-contenu-details">Nombre de vote : {{ idea?.nbVote }}</span>
                     <span class="container-contenu-details">Publié le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
 
                 </div>
                 <div style="clear: both"></div>
             </div>
-
-            <!--
-
-            <div class="idea" *ngFor="#idea of top5ideas">
-                <div class="idea-title">{{ idea?.title }}</div>
-                <!--<class="idea-date-author">par {{ idea?.auteur }}, le {{ idea?.date }}</div>
-                <div class="tiret"></div>
-                <div>
-                    <div style="float: left">
-                <span style="color: #989898; font-size: 10px">{{ idea?.firstNameAutor }} {{ idea?.nameAutor }} le {{idea?.publicateDate}} à {{idea?.publicateHour}}</span>
-
-                    </div>
-                    <div style="float: right">
-                        <img src="../static/images/nbLike.png" width="15"> <span style="line-height: 17px; color: #7b90bb; font-weight: 500">{{ idea?.nbVote }}</span>
-                    </div>
-                    <div style="clear: both"></div>
-                </div>
-            </div>
-            -->
-
-
 
         </div>
         <div style="clear: both"></div>

@@ -97,6 +97,8 @@ export class AccueilComponent{
     }
 
     communityPage(id){
-        this.router.navigate(['Communaute', { id: id }]);
+        if(id != ""){
+            this.router.navigate(['Communaute', { id: id }]);
+        }
     }
 }

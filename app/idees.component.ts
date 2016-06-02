@@ -186,7 +186,9 @@ export class IdeesComponent{
             );
     }
 
-    communityPage(id){
-        this.router.navigate(['Communaute', { id: id }]);
+    communityPage(id) {
+        if (id != "") {
+            this.router.navigate(['Communaute', {id: id}]);
+        }
     }
 }
