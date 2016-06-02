@@ -67,7 +67,50 @@ export class CommunautesComponent{
             );
     }
 
+    afficher_masquer_bloc(id){
+        var bloc_ajouter = document.getElementById(id);
+        var etat_bloc_ajouter = bloc_ajouter.style.display;
+
+        if(etat_bloc_ajouter === 'block'){
+            bloc_ajouter.style.display = "none";
+        }
+        else{
+            bloc_ajouter.style.display = "block";
+        }
+    }
+
     communityPage(id){
-        this.router.navigate(['Communaute', { id: id }]);
+        if(id != ""){
+            this.router.navigate(['Communaute', { id: id }]);
+        }
+    }
+
+    //post community | args : name, description
+    postCommunity(name, description) {
+        if(name != "" && description != "") {
+
+            let creds = JSON.stringify({name: name.value, description: description.value});
+
+            let headers = new Headers();
+            headers.append('token', localStorage.getItem('token'));
+
+            //headers.append('Content-Type', 'application/json');
+
+            headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+            this.http.post(AppSettings.API_ENDPOINT + 'community/add', creds, {
+                    headers: headers
+                })
+                .map(res => res.json())
+                .subscribe(
+                    data => {
+                        name.value = null;
+                        description.value = null;
+                        this.getAllCommunities();
+                        console.log('add comment done');
+                    },
+                    err => console.log('Erreur')
+                );
+        }
     }
 }
