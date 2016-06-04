@@ -24,12 +24,14 @@ export class AccueilComponent{
 
     public id;
 
+    public name;
 
-    constructor(private router: Router,private http:Http) {
+    constructor(private loginService : LoginService, private router: Router,private http:Http) {
 
     }
 
     ngOnInit() {
+        this.onPostToken();
         this.getTime();
         this.getMyCommunities();
         this.getTop5Ideas();
@@ -37,6 +39,16 @@ export class AccueilComponent{
 
     logError(err) {
         console.error('There was an error: ' + err);
+    }
+
+    onPostToken() {
+        this.loginService.postToken().subscribe((result) => {
+            if (result.valide) {
+                this.name = result.firstName + " " + result.name;
+            }else{
+                this.router.navigate(['Login']);
+            }
+        });
     }
 
     getMyCommunities(){

@@ -36,14 +36,14 @@ export class AppComponent implements OnInit{
     }
 
     ngOnInit() {
-        this.onPostToken()
-        this.name = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
+        this.onPostToken();
     }
 
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
             if (result.valide) {
+                this.name = result.firstName + " " + result.name;
                 this.router.navigate(['Accueil']);
             }else{
                 this.router.navigate(['Login']);
