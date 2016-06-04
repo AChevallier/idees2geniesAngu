@@ -23,6 +23,7 @@ import {LoginService} from "./login.service";
     {path: '/ajouter-idee',name : 'AjouterIdee' , component: AjouterIdeeComponent},
     {path: '/communautes',name : 'Communautes' , component: CommunautesComponent},
     {path: '/communaute/:id',name : 'Communaute' , component: CommunauteComponent},
+    {path: '/inscription',name : 'Inscription' , component: InscriptionComponent},
 ])
 export class AppComponent implements OnInit{
 

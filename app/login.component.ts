@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 
     constructor(private loginService: LoginService, private router: Router, private http : Http) {
     }
-
     ngOnInit() {
         this.onPostToken();
     }
@@ -47,6 +46,10 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['Login']);
             }
         });
+    }
+
+    onInscription(){
+        this.router.navigate(['ggg']);
     }
 
     onPostToken() {
