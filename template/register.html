@@ -10,7 +10,7 @@
 
 <div id="bloc_corps">
 
-    <div class="titre" style="text-align: center">Inscription</div>
+    <div class="titre">Inscription</div>
 
     <div style="text-align: center">
         <form>
@@ -19,10 +19,10 @@
             <div><input type="text" #name id="name"  ngControl="name" required placeholder="Prénom" ></div>
             <div><input type="email" #login id="login"  ngControl="login" required placeholder="Adresse email" class="input_email"></div>
             <div><input type="password" #password id="password" ngControl="password" required placeholder="Mot de passe"></div>
-
             <div><button (click)="onInscription(firstName, name, login, password)">Inscription</button></div>
-
         </form>
+
+        <div style="margin: 20px auto 0 auto"><span (click)="onHome()" style="color: #7b90bb; font-weight: 500" class="souris_dessus_pointer souris_dessus_souligne">Retour à l'accueil</span></div>
     </div>
 
 </div>
