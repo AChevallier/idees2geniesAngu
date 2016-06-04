@@ -44,7 +44,7 @@ export class AppComponent implements OnInit{
 
         this.loginService.postToken().subscribe((result) => {
             if (result.valide) {
-                
+                this.router.navigate(['Accueil']);
             }else{
                 this.router.navigate(['Login']);
             }

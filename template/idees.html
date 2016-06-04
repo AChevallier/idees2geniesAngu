@@ -114,7 +114,7 @@
 <div class="idea" *ngFor="#idea of dataParsed">
     <div class="idea-title">{{ idea?.title }}</div>
     <div class="idea-date-author">par {{ idea?.auteur }}, le {{ idea?.date }}</div>
-    <div class="idea-date-author"><span style="color: #7b90bb; font-weight: 500" class="souris_dessus_pointer souris_dessus_souligne" (click)="communityPage(idea?.idCommunity)">{{idea?.nameCommunity}}</span></div>
+    <div class="idea-date-author souris_dessus_souligne souris_dessus_pointer" (click)="communityPage(idea?.idCommunityIdea )" style="color: #7b90bb; font-weight: 500">{{idea?.nameCommunityIdea}}</div>
     <div class="tiret"></div>
     <div class="idea-description">
         {{ idea?.idea }}

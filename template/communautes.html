@@ -22,11 +22,51 @@
         margin: 10px 0;
     }
 
+    input[type="text"], input[type="button"]{
+        width:100%;
+        height:35px;
+        margin: 0 auto 15px auto;
+        padding: 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size:13px;
+        border: 1px solid #c7c7c7;
+    }
+
+    textarea{
+        resize: none;
+        width: 100%;
+        height: 100px;
+        margin: 0 auto 15px auto;
+        padding: 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size:13px;
+        border: 1px solid #c7c7c7;
+    }
+    textarea:hover {
+        cursor: pointer;
+    }
+
 </style>
 
 
 
-<div class="titre">Les communautés :</div>
+<div class="titre">Les communautés :
+    <div class="titre-action" (click)="afficher_masquer_bloc('ajouterCommunaute')"><img src="../static/images/ajouter.png" width="17"></div>
+</div>
+
+<div class="bloc-action" id="ajouterCommunaute">
+    <form style="width: 55%; margin: auto">
+        <div class="titre_form">Nom* :</div>
+        <div><input type="text" #name id="name" ng-control="title" required></div>
+        <div class="titre_form">Description* :</div>
+        <div><textarea id="description" #description name="description"></textarea> </div>
+        <div style="text-align: center"><button (click)="postCommunity(name, description)" >Ajouter la communauté</button></div>
+    </form>
+</div>
 
 <div class="community" *ngFor="#community of Communities">
     <div class="community-title souris_dessus_pointer souris_dessus_souligne" (click)="communityPage(community.id )">{{ community?.name }}</div>
