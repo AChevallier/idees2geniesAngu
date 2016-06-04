@@ -48,7 +48,8 @@ export class LoginService {
     }
 
     postToken() {
-        let token = localStorage.getItem('token');
+
+        let token = !!localStorage.getItem('token') ? localStorage.getItem('token') : '';
 
         let creds = JSON.stringify({token: token});
 
@@ -60,6 +61,7 @@ export class LoginService {
             headers: headers
         }).map(res => res.json())
             .map((res) => {
+                console.log(res);
                 var dataParsed = JSON.parse(res);
                 if (dataParsed.valide) {
                     this.tokenValidate = (dataParsed.valide);

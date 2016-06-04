@@ -16,7 +16,7 @@ import {RegisterService} from "./register.service";
     selector: 'my-app',
     templateUrl: 'template/my-app.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService, RegisterService]
+    providers: [LoginService]
 })
 @RouteConfig([
     {path: '/login',name : 'Login' , component: LoginComponent},
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit{
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
-            if (result.valid) {
+            if (result.valide) {
                 
             }else{
                 this.router.navigate(['Login']);

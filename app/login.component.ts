@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     onPostToken() {
 
         this.loginService.postToken().subscribe((result) => {
-            if (result.valid) {
+            if (result.valide) {
                 this.router.navigate(['Accueil']);
             }else{
                 this.router.navigate(['Login']);
