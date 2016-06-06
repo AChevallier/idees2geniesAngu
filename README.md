@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-Voici la partie frontend de l'application idées2génies. Cette application est écrit en angular 2, elle a été développer en utilisant le backend de idées2géniesSymf.
+Voici la partie frontend de l'application idées2génies. Cette application est écrit en angular 2, elle a été développé en utilisant le backend de idées2géniesSymf.
 
 ## Installation
 *idees2geniesAngu fonctionne avec __Node.js__, veuillez installer Node.js avant de poursuivre l'installation.*
